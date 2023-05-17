@@ -1,0 +1,7 @@
+{
+  "name": "APPetite",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
