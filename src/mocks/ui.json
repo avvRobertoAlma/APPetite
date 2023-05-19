@@ -12,6 +12,14 @@
             {
                 "denominazione":"Zanne di Balena",
                 "motivazione":"Può arrecare danni al fegato"
+            },
+            {
+                "denominazione":"Avocado",
+                "motivazione":"Può avere problemi seri di digestione"
+            },
+            {
+                "denominazione":"Tonno in scatola",
+                "motivazione":"Può avere problemi seri di digestione"
             }
         ]
         },

@@ -6,7 +6,11 @@ export const Api =  {
         return pets
     },
     getForbiddenFoods(type){
-
+        console.log(type)
+        let pet = pets.find((el)=>{
+            return el.tipo == type
+        })
+        return pet.alimentiVietati
     },
     getPetTypes(){
         let types = []
