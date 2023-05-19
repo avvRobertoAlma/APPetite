@@ -23,10 +23,20 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* Global components */
+import  DefaultLayout  from './layouts/DefaultLayout.vue'
+import  MenuLayout  from './layouts/MenuLayout.vue'
+
+import { store } from './store/index.js'
+
 const app = createApp(App)
   .use(IonicVue)
-  .use(router);
+  .use(router)
+  .use(store);
   
+app.component('default-layout', DefaultLayout)
+app.component('menu-layout', MenuLayout)
+
 router.isReady().then(() => {
   app.mount('#app');
 });

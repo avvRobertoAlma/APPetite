@@ -1,0 +1,28 @@
+
+    [
+        {
+            "tipo":"cane",
+            "razze":[
+                "chihuahua","beagle"
+            ],
+            "alimentiVietati":[{
+                "denominazione":"Cioccolato",
+                "motivazione":"Può farti morire"
+            },
+            {
+                "denominazione":"Zanne di Balena",
+                "motivazione":"Può arrecare danni al fegato"
+            }
+        ]
+        },
+        {
+            "tipo":"gatto",
+            "razze":[
+                "persiano","siamese"
+            ],
+            "alimentiVietati":[{
+                "denominazione":"Zenzero",
+                "motivazione":"Può arrecare danni al cervello"
+            }]
+        }
+    ]
