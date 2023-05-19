@@ -18,7 +18,7 @@ export default {
             console.log(this.$store.getters.getPets)
             if (this.$store.getters.getPets.length == 1){
                 console.log("setting active pet")
-                this.$store.commit('SET_ACTIVE_PET',0)
+                this.$store.dispatch('SET_ACTIVE_PET',0)
             }
             this.$router.replace('/home')
         }

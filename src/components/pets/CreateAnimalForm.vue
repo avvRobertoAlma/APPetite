@@ -10,8 +10,8 @@
                 </ion-select>
             </ion-item>
             <ion-item v-if="petRaces">
-                <ion-select interface="popover" label="Razza" required>
-                    <ion-select-option v-model="petRace" v-for="race in petRaces">{{ race
+                <ion-select interface="popover" label="Razza" required v-model="petRace">
+                    <ion-select-option v-for="race in petRaces">{{ race
                     }}</ion-select-option>
                 </ion-select>
             </ion-item>
