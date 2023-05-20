@@ -1,13 +1,13 @@
 <template>
   <ion-page>
-    <ion-menu content-id="main-content">
+    <ion-menu menu-id="main-menu" content-id="main-content" ref="menu">
         <ion-header>
             <ion-toolbar>
                 <ion-title>Menu</ion-title>
             </ion-toolbar>
                 <ion-list>
                     <ion-item router-link="/nutriscore">Scanner Qualità</ion-item>
-                    <ion-item router-link="/crea-piatto">Crea il tuo piatto</ion-item>
+                    <ion-item router-link="/create-dish">Crea il tuo piatto</ion-item>
                     <ion-item router-link="/forbidden-foods">Alimenti vietati</ion-item>
                     <ion-item router-link="/pets/list">I miei pets</ion-item>
                 </ion-list>
@@ -75,6 +75,9 @@
       petName(){
         this.$store.dispatch('SET_ACTIVE_PET_BY_NAME', this.petName)
       }
+    },
+    ionViewWillEnter(){
+      console.log(this.$refs.menu.isOpen())
     }
   };
   </script>

@@ -1,17 +1,24 @@
 <template>
-    <menu-layout pageTitle="Home">
+    <menu-layout pageTitle="Home" v-if="!loading">
         <IonImg src="logo.png" />
     </menu-layout>
 </template>
 
 <script>
-import { IonImg } from '@ionic/vue'
+import { IonImg, menuController } from '@ionic/vue'
 export default {
     components: {
-        IonImg
+        IonImg, menuController
     },
-    ionViewWillEnter() {
-        console.log('Home page will enter');
+    async ionViewWillEnter() {
+        this.loading=true
+        await menuController.close('main-menu')
+        this.loading=false
+    },
+    data(){
+        return {
+            loading: false
+        }
     }
 }
 </script>

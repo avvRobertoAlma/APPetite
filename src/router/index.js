@@ -35,6 +35,11 @@ const routes = [
     path: '/nutriscore',
     name: 'nutriscore',
     component: Nutriscore
+  },
+  {
+    path: '/create-dish',
+    name: 'create-dish',
+    component: () => import('../pages/CreateDishPage.vue')
   }
 ]
 
