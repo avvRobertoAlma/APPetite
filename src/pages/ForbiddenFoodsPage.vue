@@ -1,5 +1,5 @@
 <template>
-  <menu-layout pageTitle="Cibi vietati">
+  <default-layout pageTitle="Cibi vietati" pageDefaultBackLink="/home">
     <!-- Display a search bar -->
     <ion-searchbar placeholder="Filtra..." v-model="inputChars"></ion-searchbar>
 
@@ -26,7 +26,7 @@
       </ion-content>
     </ion-modal>
 
-  </menu-layout>
+  </default-layout>
 </template>
   
 <script>

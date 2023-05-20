@@ -1,0 +1,62 @@
+[
+    {
+        "barcode":"sample",
+        "product":"All Breeds Adult Salmone con Riso",
+        "img":"monge-salmone.jpeg",
+        "points":80,
+        "positives":[
+            {
+                "description":"Senza Sale",
+                "img":null
+            },
+            {
+                "description":"Senza Glutine",
+                "img":null
+            }
+        ],
+        "overall":[
+            {
+                "description":"n.2 potenzialmente dannosi",
+                "risk":"rischio medio"
+            },
+            {
+                "description":"n.3 qualitativamente scarsi",
+                "risk":"rischio basso"
+            },
+            {
+                "description":"proteine diverse",
+                "risk":"rischio medio"
+            }
+        ],
+        "ingredients":[
+            {
+                "description":"Oli e grassi",
+                "risk":"medium"
+            },
+            {
+                "description":"Acqua",
+                "risk":null
+            },
+            {
+                "description":"Carne di Tacchino",
+                "risk":null
+            },
+            {
+                "description":"Amido di Mais",
+                "risk":"medium"
+            },
+            {
+                "description":"Sale",
+                "risk":"high"
+            },
+            {
+                "description":"Farina di Soia",
+                "risk":null
+            },
+            {
+                "description":"Spezzatura riso",
+                "risk":null
+            }
+        ]
+    }
+]

@@ -1,7 +1,7 @@
 <template>
-    <menu-layout pageTitle="Crea Pet">
+    <default-layout pageTitle="Crea Pet" pageDefaultBackLink="/pets/list">
         <CreateAnimalForm @save-pet="savePet"/>
-    </menu-layout>
+    </default-layout>
 
 </template>
 

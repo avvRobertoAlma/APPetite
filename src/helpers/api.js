@@ -1,4 +1,5 @@
 import pets from '../mocks/ui.json'
+import nutriscoreRankings from '../mocks/nutriscore.json'
 
 
 export const Api =  {
@@ -27,5 +28,14 @@ export const Api =  {
             return el.tipo == type
         })
         return pet.razze
+    },
+    getNutriscoreRanking(barcode){
+        const product = nutriscoreRankings.find(function(el){
+            return el.barcode == barcode
+        })
+        if (!product){
+            return null
+        } 
+        return product
     }
 }

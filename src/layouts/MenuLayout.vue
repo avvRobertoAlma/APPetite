@@ -1,4 +1,5 @@
 <template>
+  <ion-page>
     <ion-menu content-id="main-content">
         <ion-header>
             <ion-toolbar>
@@ -12,21 +13,22 @@
                 </ion-list>
         </ion-header>
     </ion-menu>
-    <ion-page id="main-content">
+    <div class="ion-page" id="main-content">
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
           <ion-title>{{ pageTitle }}</ion-title>
-          <ion-buttons slot="end">
-            <slot name="actions-end"></slot>
-          </ion-buttons>
+          <ion-select v-model="petName" aria-label="Pets" interface="popover" :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined" slot="end">
+            <ion-select-option  :value="pet.name" v-for="pet in $store.getters.getPets">{{pet.name}}</ion-select-option>
+      </ion-select>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <slot />
       </ion-content>
+      </div>
     </ion-page>
   </template>
   
@@ -43,10 +45,12 @@
     IonMenuButton,
     IonList,
     IonItem,
+    IonSelect,
+    IonSelectOption
   } from "@ionic/vue";
   
   export default {
-    props: ["pageTitle", "pageDefaultBackLink"],
+    props: ["pageTitle"],
     components: {
       IonPage,
       IonHeader,
@@ -59,7 +63,19 @@
       IonMenuButton,
       IonList,
       IonItem,
+      IonSelect,
+      IonSelectOption
     },
+    data(){
+      return {
+        petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null
+      }
+    },
+    watch:{
+      petName(){
+        this.$store.dispatch('SET_ACTIVE_PET_BY_NAME', this.petName)
+      }
+    }
   };
   </script>
 

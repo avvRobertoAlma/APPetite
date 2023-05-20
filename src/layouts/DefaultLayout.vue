@@ -8,9 +8,9 @@
             ></ion-back-button>
           </ion-buttons>
           <ion-title>{{ pageTitle }}</ion-title>
-          <ion-buttons slot="end">
-            <slot name="actions-end"></slot>
-          </ion-buttons>
+          <ion-select v-model="petName" aria-label="Pets" interface="popover" :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined" slot="end">
+            <ion-select-option  :value="pet.name" v-for="pet in $store.getters.getPets">{{pet.name}}</ion-select-option>
+      </ion-select>
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -28,6 +28,8 @@
     IonContent,
     IonBackButton,
     IonButtons,
+    IonSelect,
+    IonSelectOption
   } from "@ionic/vue";
   
   export default {
@@ -40,6 +42,18 @@
       IonContent,
       IonBackButton,
       IonButtons,
+      IonSelect,
+      IonSelectOption
     },
+    data(){
+      return {
+        petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null
+      }
+    },
+    watch:{
+      petName(){
+        this.$store.dispatch('SET_ACTIVE_PET_BY_NAME', this.petName)
+      }
+    }
   };
   </script>

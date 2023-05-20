@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
+import { createRouter, createWebHashHistory } from '@ionic/vue-router';
 import { store } from '../store/index'
 import Home from '../pages/Home.vue'
 import AddPetPage from '../pages/AddPetPage.vue'
 import MyPets from '../pages/MyPets.vue'
 import ForbiddenFoodsPage from '../pages/ForbiddenFoodsPage.vue'
+import Nutriscore from '../pages/NutriscorePage.vue'
 
 const routes = [
   {
@@ -18,7 +19,7 @@ const routes = [
   {
     path: '/add-pet',
     name: 'addPet',
-    component: AddPetPage
+    component: () => import('../pages/AddPetPage.vue')
   },
   {
     path:'/pets/list',
@@ -29,15 +30,21 @@ const routes = [
     path: '/forbidden-foods',
     name: 'forbidden-foods',
     component: ForbiddenFoodsPage
+  },
+  {
+    path: '/nutriscore',
+    name: 'nutriscore',
+    component: Nutriscore
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes
 })
 
 router.beforeEach(async (to, from) => {
+  console.log(to)
 	if (
 	  // make sure there is an active pet
 	  !store.getters.getActivePet &&

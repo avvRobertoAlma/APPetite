@@ -13,9 +13,9 @@ export const store = createStore({
       state.pets.push(pet)
       localStorage.setItem('appetite_pets', JSON.stringify(state.pets))
     },
-    SELECT_ACTIVE_PET(state, petId){
+    SELECT_ACTIVE_PET(state, petName){
         const idx = state.pets.findIndex(function(el){
-            return el.id == petId
+            return el.name == petName
         })
         state.activePet = pet[idx]
     },
@@ -44,6 +44,14 @@ export const store = createStore({
       localStorage.setItem('appetite_active_pet', idx)
       store.commit('SET_ACTIVE_PET', idx)
     },
+    SET_ACTIVE_PET_BY_NAME(store, name){
+      const idx = store.state.pets.findIndex(function(el){
+        return el.name == name
+    })
+    console.log(idx)
+    localStorage.setItem('appetite_active_pet', idx)
+      store.commit('SET_ACTIVE_PET', idx)
+    }
     
   },
   getters: {
