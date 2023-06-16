@@ -1,21 +1,26 @@
 <template>
     <menu-layout pageTitle="Home" v-if="!loading">
-        <IonImg src="logo.png" />
+        <IonImg src="logo1_transparency.png" @click="openMenu()" />
     </menu-layout>
 </template>
 
 <script>
-import { IonImg, menuController } from '@ionic/vue'
+import { IonImg, IonItem, menuController } from '@ionic/vue'
 export default {
     components: {
-        IonImg, menuController
+        IonImg, IonItem, menuController
     },
     async ionViewWillEnter() {
-        this.loading=true
+        this.loading = true
         await menuController.close('main-menu')
-        this.loading=false
+        this.loading = false
     },
-    data(){
+    methods: {
+        openMenu() {
+            menuController.toggle('main-menu')
+        },
+    },
+    data() {
         return {
             loading: false
         }

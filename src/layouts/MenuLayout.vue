@@ -1,17 +1,17 @@
 <template>
   <ion-page>
     <ion-menu menu-id="main-menu" content-id="main-content" ref="menu">
-        <ion-header>
-            <ion-toolbar>
-                <ion-title>Menu</ion-title>
-            </ion-toolbar>
-                <ion-list>
-                    <ion-item router-link="/nutriscore">Scanner Qualità</ion-item>
-                    <ion-item router-link="/create-dish">Crea il tuo piatto</ion-item>
-                    <ion-item router-link="/forbidden-foods">Alimenti vietati</ion-item>
-                    <ion-item router-link="/pets/list">I miei pets</ion-item>
-                </ion-list>
-        </ion-header>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+        <ion-list>
+          <ion-item router-link="/nutriscore">Scanner Qualità</ion-item>
+          <ion-item router-link="/create-dish">Crea il tuo piatto</ion-item>
+          <ion-item router-link="/forbidden-foods">Alimenti vietati</ion-item>
+          <ion-item router-link="/pets/list">I miei pets</ion-item>
+        </ion-list>
+      </ion-header>
     </ion-menu>
     <div class="ion-page" id="main-content">
       <ion-header>
@@ -20,20 +20,39 @@
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
           <ion-title>{{ pageTitle }}</ion-title>
-          <ion-select v-model="petName" aria-label="Pets" interface="popover" :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined" slot="end">
-            <ion-select-option  :value="pet.name" v-for="pet in $store.getters.getPets">{{pet.name}}</ion-select-option>
-      </ion-select>
+          <ion-select v-model="petName" aria-label="Pets" interface="popover"
+            :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined" slot="end">
+            <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{ pet.name }}</ion-select-option>
+          </ion-select>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <slot />
       </ion-content>
-      </div>
-    </ion-page>
-  </template>
+    </div>
+  </ion-page>
+</template>
   
-  <script>
-  import {
+<script>
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonBackButton,
+  IonButtons,
+  IonMenu,
+  IonMenuButton,
+  IonList,
+  IonItem,
+  IonSelect,
+  IonSelectOption
+} from "@ionic/vue";
+
+export default {
+  props: ["pageTitle"],
+  components: {
     IonPage,
     IonHeader,
     IonToolbar,
@@ -47,38 +66,60 @@
     IonItem,
     IonSelect,
     IonSelectOption
-  } from "@ionic/vue";
-  
-  export default {
-    props: ["pageTitle"],
-    components: {
-      IonPage,
-      IonHeader,
-      IonToolbar,
-      IonTitle,
-      IonContent,
-      IonBackButton,
-      IonButtons,
-      IonMenu,
-      IonMenuButton,
-      IonList,
-      IonItem,
-      IonSelect,
-      IonSelectOption
-    },
-    data(){
-      return {
-        petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null
-      }
-    },
-    watch:{
-      petName(){
-        this.$store.dispatch('SET_ACTIVE_PET_BY_NAME', this.petName)
-      }
-    },
-    ionViewWillEnter(){
-      console.log(this.$refs.menu.isOpen())
+  },
+  data() {
+    return {
+      petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null
     }
-  };
-  </script>
+  },
+  watch: {
+    petName() {
+      this.$store.dispatch('SET_ACTIVE_PET_BY_NAME', this.petName)
+    }
+  },
+  ionViewWillEnter() {
+    console.log(this.$refs.menu.isOpen())
+  }
+};
+</script>
 
+<style>
+ion-toolbar {
+  color: #FFF;
+}
+
+ion-item,
+ion-select-popover {
+  color: #FFF;
+  --ion-background-color: #F6A300;
+}
+
+ion-radio-popover {
+  color: #A00007;
+  --ion-background-color: #F6A300;
+}
+
+ion-focused {
+  color: #A00007;
+  /* --ion-background-color: #F68300; */
+}
+
+ion-header {
+  --ion-background-color: #F6A300;
+}
+
+ion-select {
+  color: #FFF;
+  --placeholder-color: #000;
+  margin-right: 5px;
+}
+
+ion-select::part(icon) {
+  color: #A00007;
+  opacity: 1;
+}
+
+ion-select::part(text) {
+  flex: 0 0 auto;
+}
+</style>
