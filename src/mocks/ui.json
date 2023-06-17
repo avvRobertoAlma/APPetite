@@ -3,7 +3,7 @@
         {
             "tipo":"cane",
             "razze":[
-                "chihuahua","beagle"
+                "chihuahua","beagle","pastore tedesco","labrador","jack russell","bulldog","maltese","spitz","barboncino","pitbull","husky","pinscher","altro"
             ],
             "alimentiVietati":[{
                 "denominazione":"Cioccolato",
@@ -26,7 +26,7 @@
         {
             "tipo":"gatto",
             "razze":[
-                "persiano","siamese"
+                "persiano","siamese","birmano","soriano","bombay","abissino","maine coon","certosino","altro"
             ],
             "alimentiVietati":[{
                 "denominazione":"Zenzero",

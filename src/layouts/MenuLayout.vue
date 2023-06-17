@@ -20,9 +20,18 @@
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
           <ion-title>{{ pageTitle }}</ion-title>
-          <ion-select v-model="petName" aria-label="Pets" interface="popover"
-            :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined" slot="end">
-            <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{ pet.name }}</ion-select-option>
+          <ion-select
+            v-model="petName"
+            aria-label="Pets"
+            interface="popover"
+            :value="
+              $store.getters.getActivePet ? $store.getters.getActivePet.name : undefined
+            "
+            slot="end"
+          >
+            <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{
+              pet.name
+            }}</ion-select-option>
           </ion-select>
         </ion-toolbar>
       </ion-header>
@@ -32,7 +41,7 @@
     </div>
   </ion-page>
 </template>
-  
+
 <script>
 import {
   IonPage,
@@ -47,7 +56,7 @@ import {
   IonList,
   IonItem,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
 } from "@ionic/vue";
 
 export default {
@@ -65,57 +74,62 @@ export default {
     IonList,
     IonItem,
     IonSelect,
-    IonSelectOption
+    IonSelectOption,
   },
   data() {
     return {
-      petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null
-    }
+      petName: this.$store.getters.getActivePet
+        ? this.$store.getters.getActivePet.name
+        : null,
+    };
   },
   watch: {
     petName() {
-      this.$store.dispatch('SET_ACTIVE_PET_BY_NAME', this.petName)
-    }
+      this.$store.dispatch("SET_ACTIVE_PET_BY_NAME", this.petName);
+    },
   },
   ionViewWillEnter() {
-    console.log(this.$refs.menu.isOpen())
-  }
+    console.log(this.$refs.menu.isOpen());
+  },
 };
 </script>
 
 <style>
 ion-toolbar {
-  color: #FFF;
+  color: #fff;
 }
 
 ion-item,
 ion-select-popover {
-  color: #FFF;
-  --ion-background-color: #F6A300;
+  color: #fff;
+  --ion-background-color: #f6a300;
+  --highlight-color-focused: #a00007;
+  --background-focused: var(--highlight-color-focused);
 }
 
 ion-radio-popover {
-  color: #A00007;
-  --ion-background-color: #F6A300;
+  color: #a00007;
+  --ion-background-color: #f6a300;
 }
 
 ion-focused {
-  color: #A00007;
+  color: #a00007;
   /* --ion-background-color: #F68300; */
 }
 
 ion-header {
-  --ion-background-color: #F6A300;
+  --ion-background-color: #f6a300;
 }
 
 ion-select {
-  color: #FFF;
-  --placeholder-color: #000;
+  color: #fff;
+  --placeholder-color: #a00007;
+  --highlight-color-focused: #a00007;
   margin-right: 5px;
 }
 
 ion-select::part(icon) {
-  color: #A00007;
+  color: #a00007;
   opacity: 1;
 }
 
