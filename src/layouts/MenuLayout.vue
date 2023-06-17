@@ -6,10 +6,18 @@
           <ion-title>Menu</ion-title>
         </ion-toolbar>
         <ion-list>
-          <ion-item router-link="/nutriscore">Scanner Qualità</ion-item>
-          <ion-item router-link="/create-dish">Crea il tuo piatto</ion-item>
-          <ion-item router-link="/forbidden-foods">Alimenti vietati</ion-item>
-          <ion-item router-link="/pets/list">I miei pets</ion-item>
+          <ion-item router-link="/nutriscore" style="cursor: pointer"
+            >Scanner Qualità</ion-item
+          >
+          <ion-item router-link="/create-dish" style="cursor: pointer"
+            >Crea il tuo piatto</ion-item
+          >
+          <ion-item router-link="/forbidden-foods" style="cursor: pointer"
+            >Alimenti vietati</ion-item
+          >
+          <ion-item router-link="/pets/list" style="cursor: pointer"
+            >I miei pets</ion-item
+          >
         </ion-list>
       </ion-header>
     </ion-menu>
@@ -99,10 +107,14 @@ ion-toolbar {
   color: #fff;
 }
 
+ion-list {
+  background-color: white !important;
+}
+
 ion-item,
 ion-select-popover {
   color: #fff;
-  --ion-background-color: #f6a300;
+  --ion-background-color: white;
   --highlight-color-focused: #a00007;
   --background-focused: var(--highlight-color-focused);
 }
