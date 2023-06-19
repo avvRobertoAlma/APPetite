@@ -6,26 +6,40 @@
         "points":80,
         "positives":[
             {
-                "description":"Senza Sale",
-                "img":null
+                "name":"Senza Sale",
+                "img":null,
+                "description":"Il prodotto non contiene sale"
             },
             {
-                "description":"Senza Glutine",
-                "img":null
+                "name":"Senza Glutine",
+                "img":null,
+                "description":"Il prodotto può essere somministrato ad animali celiaci o con intolleranze al glutine"
             }
         ],
         "overall":[
             {
+                "name":"Ingredienti potenzialmente pericolosi",
                 "description":"n.2 potenzialmente dannosi",
-                "risk":"rischio medio"
+                "risk":"rischio alto",
+                "details":"La presenza di queste sostanze potrebbe far male al tuo animale",
+                "ingredients":"Olio di palma - Noce di cocco",
+                "symptoms":["vomito", "diarrea", "allergia"]
             },
             {
-                "description":"n.3 qualitativamente scarsi",
-                "risk":"rischio basso"
-            },
-            {
+                "name":"Proteine diverse",
                 "description":"proteine diverse",
-                "risk":"rischio medio"
+                "risk":"rischio medio",
+                "details":"La presenza di queste combinazioni potrebbe causare effetti indesiderati al tuo animale",
+                "ingredients":"Proteine del pesce - Proteine della soia",
+                "symptoms":["fame","sete"]
+            },
+            {
+                "name":"Ingredienti qualitativamente scarsi",
+                "description":"n.3 qualitativamente scarsi",
+                "risk":"rischio basso",
+                "details":"La presenza di queste sostanze potrebbe non essere la scelta migliore per il tuo animale",
+                "ingredients":"Farina di alghe - Aglio essiccato",
+                "symptoms":[]
             }
         ],
         "ingredients":[
