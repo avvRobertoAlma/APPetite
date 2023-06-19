@@ -41,7 +41,6 @@
                 expand="block"
                 v-for="positive in rankings.positives"
                 @click="setSelectedPositive(positive)"
-                id="general"
               >
                 <ion-label>{{ positive.name }}</ion-label>
                 <ion-icon
@@ -68,7 +67,6 @@
                 expand="block"
                 v-for="item in rankings.overall"
                 @click="setSelectedOverall(item)"
-                id="general"
               >
                 <ion-label>{{ item.description }}</ion-label>
                 <ion-icon
@@ -346,7 +344,7 @@ ion-img {
   margin: auto;
 }
 
-#general {
+ion-item {
   color: rgb(22, 22, 22) !important;
   --ion-background-color: white !important;
   --border-color: #f6a300 !important;
