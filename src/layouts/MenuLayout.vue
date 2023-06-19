@@ -6,18 +6,10 @@
           <ion-title>Menu</ion-title>
         </ion-toolbar>
         <ion-list>
-          <ion-item router-link="/nutriscore" style="cursor: pointer"
-            >Scanner Qualità</ion-item
-          >
-          <ion-item router-link="/create-dish" style="cursor: pointer"
-            >Crea il tuo piatto</ion-item
-          >
-          <ion-item router-link="/forbidden-foods" style="cursor: pointer"
-            >Alimenti vietati</ion-item
-          >
-          <ion-item router-link="/pets/list" style="cursor: pointer"
-            >I miei pets</ion-item
-          >
+          <ion-item router-link="/nutriscore" style="cursor: pointer">Scanner Qualità</ion-item>
+          <ion-item router-link="/create-dish" style="cursor: pointer">Dosa il cibo</ion-item>
+          <ion-item router-link="/forbidden-foods" style="cursor: pointer">Cibi vietati</ion-item>
+          <ion-item router-link="/pets/list" style="cursor: pointer">I miei pets</ion-item>
         </ion-list>
       </ion-header>
     </ion-menu>
@@ -28,15 +20,8 @@
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
           <ion-title>{{ pageTitle }}</ion-title>
-          <ion-select
-            v-model="petName"
-            aria-label="Pets"
-            interface="popover"
-            :value="
-              $store.getters.getActivePet ? $store.getters.getActivePet.name : undefined
-            "
-            slot="end"
-          >
+          <ion-select v-model="petName" aria-label="Pets" interface="popover" :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined
+            " slot="end">
             <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{
               pet.name
             }}</ion-select-option>

@@ -5,7 +5,7 @@
                 <ion-input type="text" label="Nome" label-placement="floating" v-model="petName" required />
             </ion-item>
             <ion-item>
-                <ion-select v-model="petType" interface="popover" label="Specie" required>
+                <ion-select style="color: #000 !important" v-model="petType" interface="popover" label="Specie" required>
                     <ion-select-option v-for="type in petTypes" :value="type">{{ type }}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -26,30 +26,35 @@
             </ion-item>
         </ion-list>
         <ion-item>
-            <ion-select v-model="sex" interface="popover" label="Sesso" required>
+            <ion-select style="color: #000 !important" v-model="sex" interface="popover" label="Sesso" required>
                 <ion-select-option value="Maschio">Maschio</ion-select-option>
                 <ion-select-option value="Femmina">Femmina</ion-select-option>
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-select v-model="sterilized" interface="popover" label="Sterilizzato?" required>
+            <ion-select style="color: #000 !important" v-model="sterilized" interface="popover" label="Sterilizzato?"
+                required>
                 <ion-select-option value="Sì">Sì</ion-select-option>
                 <ion-select-option value="No">No</ion-select-option>
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-select v-model="physicalForm" interface="popover" label="Forma fisica" required>
-                <ion-select-option value="Scadente">Scadente</ion-select-option>
-                <ion-select-option value="Buona">Buona</ion-select-option>
+            <ion-select style="color: #000 !important" v-model="physicalForm" interface="popover" label="Forma fisica"
+                required>
+                <ion-select-option value="Sovrappeso">Sovrappeso</ion-select-option>
+                <ion-select-option value="Normale">Normale</ion-select-option>
+                <ion-select-option value="Sottopeso">Sottopeso</ion-select-option>
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-select v-model="physicalActivity" interface="popover" label="Attività fisica" required>
-                <ion-select-option value="Scarsa">Scarsa</ion-select-option>
+            <ion-select style="color: #000 !important" v-model="physicalActivity" interface="popover"
+                label="Attività fisica" required>
+                <ion-select-option value="Nessuna">Nessuna</ion-select-option>
+                <ion-select-option value="Saltuaria">Saltuaria</ion-select-option>
                 <ion-select-option value="Frequente">Frequente</ion-select-option>
             </ion-select>
         </ion-item>
-        <ion-button type="submit" expand="block">Salva</ion-button>
+        <ion-button type="submit" color="success" expand="block">Salva</ion-button>
     </form>
 </template>
 
