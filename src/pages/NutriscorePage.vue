@@ -22,15 +22,8 @@
         </ion-row>
         <ion-row>
           <ion-col></ion-col>
-          <ion-col
-            size="auto"
-            size-lg="auto"
-            size-md="auto"
-            size-sm="auto"
-            size-xl="auto"
-            size-xs="auto"
-            style="width: 50%"
-          >
+          <ion-col size="auto" size-lg="auto" size-md="auto" size-sm="auto" size-xl="auto" size-xs="auto"
+            style="width: 50%">
             <h1 :class="nutriscoreClass">{{ rankings.points }}/100</h1>
           </ion-col>
           <ion-col></ion-col>
@@ -41,11 +34,7 @@
             <ion-list>
               <ion-item v-for="positive in rankings.positives">
                 <ion-label>{{ positive.description }}</ion-label>
-                <ion-icon
-                  :icon="informationCircle"
-                  style="color: #eb8500"
-                  slot="end"
-                ></ion-icon>
+                <ion-icon :icon="informationCircle" style="color: #eb8500" slot="end"></ion-icon>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -63,11 +52,7 @@
             <ion-list>
               <ion-item v-for="item in rankings.overall">
                 <ion-label>{{ item.description }}</ion-label>
-                <ion-icon
-                  :icon="informationCircle"
-                  style="color: #eb8500"
-                  slot="end"
-                ></ion-icon>
+                <ion-icon :icon="informationCircle" style="color: #eb8500" slot="end"></ion-icon>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -90,18 +75,9 @@
             <ion-label>
               {{ element.description }}
             </ion-label>
-            <ion-icon
-              :icon="alertCircleSharp"
-              v-if="element.risk == 'medium'"
-              style="color: rgb(235, 235, 0)"
-              slot="end"
-            ></ion-icon>
-            <ion-icon
-              :icon="warningSharp"
-              v-if="element.risk == 'high'"
-              style="color: red"
-              slot="end"
-            ></ion-icon>
+            <ion-icon :icon="alertCircleSharp" v-if="element.risk == 'medium'" style="color: rgb(235, 235, 0)"
+              slot="end"></ion-icon>
+            <ion-icon :icon="warningSharp" v-if="element.risk == 'high'" style="color: red" slot="end"></ion-icon>
           </ion-item>
         </ion-list>
       </ion-content>
@@ -162,8 +138,8 @@ export default {
     },
   },
   methods: {
-    loadNutriscoreRanking(barcode) {
-      this.rankings = Api.getNutriscoreRanking(barcode);
+    async loadNutriscoreRanking(barcode) {
+      this.rankings = await Api.getNutriscoreRanking(barcode);
       this.isScannerOpen = false;
       this.isRankingOpen = true;
     },
@@ -184,18 +160,22 @@ a {
   text-align: right !important;
   cursor: pointer !important;
 }
+
 a:hover {
   color: #eb8500 !important;
 }
+
 ion-img {
   width: 75%;
   margin: auto;
 }
+
 ion-item {
   color: rgb(22, 22, 22) !important;
   --ion-background-color: white !important;
   --border-color: #f6a300 !important;
 }
+
 .nutriscore-points-green {
   border: 1px solid green;
   background-color: lightgreen;

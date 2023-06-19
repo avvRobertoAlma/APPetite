@@ -6,11 +6,13 @@
             </ion-item>
             <ion-item>
                 <ion-select style="color: #000 !important" v-model="petType" interface="popover" label="Specie" required>
-                    <ion-select-option v-for="type in petTypes" :value="type">{{ type }}</ion-select-option>
+                    <ion-select-option v-for="type in petTypes" :value="type">
+                        {{ type }}
+                    </ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item v-if="petRaces">
-                <ion-select interface="popover" label="Razza" required v-model="petRace">
+                <ion-select interface="popover" label="Razza" required v-model="petRace" id="select">
                     <ion-select-option v-for="race in petRaces">{{ race
                     }}</ion-select-option>
                 </ion-select>
@@ -26,29 +28,26 @@
             </ion-item>
         </ion-list>
         <ion-item>
-            <ion-select style="color: #000 !important" v-model="sex" interface="popover" label="Sesso" required>
+            <ion-select v-model="sex" interface="popover" label="Sesso" required id="select">
                 <ion-select-option value="Maschio">Maschio</ion-select-option>
                 <ion-select-option value="Femmina">Femmina</ion-select-option>
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-select style="color: #000 !important" v-model="sterilized" interface="popover" label="Sterilizzato?"
-                required>
+            <ion-select v-model="sterilized" interface="popover" label="Sterilizzato?" required id="select">
                 <ion-select-option value="Sì">Sì</ion-select-option>
                 <ion-select-option value="No">No</ion-select-option>
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-select style="color: #000 !important" v-model="physicalForm" interface="popover" label="Forma fisica"
-                required>
+            <ion-select v-model="physicalForm" interface="popover" label="Forma fisica" required id="select">
                 <ion-select-option value="Sovrappeso">Sovrappeso</ion-select-option>
                 <ion-select-option value="Normale">Normale</ion-select-option>
                 <ion-select-option value="Sottopeso">Sottopeso</ion-select-option>
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-select style="color: #000 !important" v-model="physicalActivity" interface="popover"
-                label="Attività fisica" required>
+            <ion-select v-model="physicalActivity" interface="popover" label="Attività fisica" required id="select">
                 <ion-select-option value="Nessuna">Nessuna</ion-select-option>
                 <ion-select-option value="Saltuaria">Saltuaria</ion-select-option>
                 <ion-select-option value="Frequente">Frequente</ion-select-option>
@@ -118,3 +117,9 @@ export default defineComponent({
 })
 
 </script>
+
+<style>
+#select {
+    color: #000 !important;
+}
+</style>

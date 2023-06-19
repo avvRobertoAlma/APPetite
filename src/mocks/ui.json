@@ -1,36 +1,123 @@
-
-    [
-        {
-            "tipo":"cane",
-            "razze":[
-                "chihuahua","beagle","pastore tedesco","labrador","jack russell","bulldog","maltese","spitz","barboncino","pitbull","husky","pinscher","altro"
-            ],
-            "alimentiVietati":[{
-                "denominazione":"Cioccolato",
-                "motivazione":"Può farti morire"
+[
+    {
+        "tipo": "cane",
+        "razze": [
+            "Chihuahua",
+            "Beagle",
+            "Pastore tedesco",
+            "Labrador",
+            "Jack russell",
+            "Bulldog",
+            "Maltese",
+            "Spitz",
+            "Barboncino",
+            "Pitbull",
+            "Husky",
+            "Pinscher",
+            "altro"
+        ],
+        "alimentiVietati": [
+            {
+                "denominazione": "cioccolato",
+                "motivazione": "La teobromina può provocare tremori, sete eccessiva, battito cardiaco irregolare e, nei casi più estremi, portare alla morte."
             },
             {
-                "denominazione":"Zanne di Balena",
-                "motivazione":"Può arrecare danni al fegato"
+                "denominazione": "zucchero",
+                "motivazione": "Può causare problemi ai denti o diabete e un conseguente aumento di peso."
             },
             {
-                "denominazione":"Avocado",
-                "motivazione":"Può avere problemi seri di digestione"
+                "denominazione": "sale",
+                "motivazione": "L’eccessivo apporto di sale nella dieta del cane può provocare polidpsia (sete eccessiva), pressione alta e aumentare l’insorgenza di patologie renali."
             },
             {
-                "denominazione":"Tonno in scatola",
-                "motivazione":"Può avere problemi seri di digestione"
+                "denominazione": "noci di macadamia",
+                "motivazione": "Contengono una tossina non ancora ben identificata che nel cane può provocare tremori, debolezza e innalzamento della temperatura sino, addirittura, alla paralisi."
+            },
+            {
+                "denominazione": "cipolla",
+                "motivazione": "Un sovradosaggio può danneggiare i globuli rossi del tuo cane."
+            },
+            {
+                "denominazione": "avocado",
+                "motivazione": "Contiene una tossina (persina) in grado di provocare disturbi digestivi al cane."
+            },
+            {
+                "denominazione": "uva/uvetta",
+                "motivazione": "Potrebbero causare letargia, depressione, vomito e iperattività. Inoltre sono stati descritti casi gravi di insufficienza renale in cani dopo l'ingestione di grandi quantità di uva fresca o uvetta, di cui non si conosce esattamente il meccanismo di tossicità."
             }
         ]
-        },
-        {
-            "tipo":"gatto",
-            "razze":[
-                "persiano","siamese","birmano","soriano","bombay","abissino","maine coon","certosino","altro"
-            ],
-            "alimentiVietati":[{
-                "denominazione":"Zenzero",
-                "motivazione":"Può arrecare danni al cervello"
-            }]
-        }
-    ]
+    },
+    {
+        "tipo": "gatto",
+        "razze": [
+            "Persiano",
+            "Siamese",
+            "Birmano",
+            "Soriano",
+            "Bombay",
+            "Abissino",
+            "Maine coon",
+            "Certosino",
+            "Altro"
+        ],
+        "alimentiVietati": [
+            {
+                "denominazione": "cioccolato",
+                "motivazione": "All’interno è presente la teobromina, una molecola simile alla caffeina che può risultare tossica per i gatti."
+            },
+            {
+                "denominazione": "tè",
+                "motivazione": "Può provocare reazioni gravi a carico del cuore e del sistema respiratorio come palpitazioni, tachicardia, respiro corto e tremori muscolari."
+            },
+            {
+                "denominazione": "caffè",
+                "motivazione": "Può provocare reazioni gravi a carico del cuore e del sistema respiratorio come palpitazioni, tachicardia, respiro corto e tremori muscolari."
+            },
+            {
+                "denominazione": "cipolla",
+                "motivazione": "La presenza di tiosolfato influisce negativamente sulla produzione di globuli rossi e può causare gravi situazioni di anemia."
+            },
+            {
+                "denominazione": "pomodoro",
+                "motivazione": "La presenza di solanina può causare disturbi a livello gastrointestinale o, in casi più gravi, danni al sistema nervoso."
+            },
+            {
+                "denominazione": "buccia di patata",
+                "motivazione": "La presenza di solanina può causare disturbi a livello gastrointestinale o, in casi più gravi, danni al sistema nervoso."
+            },
+            {
+                "denominazione": "avocado",
+                "motivazione": "Le foglie, i semi e lo stesso frutto dell’avocado contengono persina, una sostanza che può causare vomito o diarrea."
+            }
+        ]
+    },
+    {
+        "tipo": "tartaruga",
+        "razze": [
+            "Orecchie rosse",
+            "Orecchie gialle",
+            "Naso di porcello",
+            "Punteggiata",
+            "Del muschio carenata",
+            "Altro"
+        ],
+        "alimentiVietati": [
+            {
+                "denominazione": "peperone",
+                "motivazione": "Può causare obesità, carenze nutrizionali e anche malattie del fegato."
+            },
+            {
+                "denominazione": "cetriolo",
+                "motivazione": "Può causare obesità, carenze nutrizionali e anche malattie del fegato."
+            },
+            {
+                "denominazione": "funghi",
+                "motivazione": "Difficoltà di digestione."
+            },
+            {
+                "denominazione": "zucchero",
+                "motivazione": "L'ingestione di una grande quantità rischia di distruggere i batteri presenti nello stomaco delle tartarughe, in grado di digerirne quantità ridotte. L'ingestione di una grande quantità rischia di distruggerli, con conseguente intossicazione e, di conseguenza, morte."
+            }
+        ]
+    }
+]
