@@ -1,75 +1,213 @@
 [
     {
-        "barcode":"sample",
-        "product":"All Breeds Adult Salmone con Riso",
-        "img":"monge-salmone.jpeg",
-        "points":80,
-        "positives":[
+        "barcode": "sample-dog",
+        "pet": "cane",
+        "product": "All Breeds Adult Salmone con Riso",
+        "img": "monge-salmone.jpeg",
+        "points": 80,
+        "positives": [
             {
-                "name":"Senza Sale",
-                "img":null,
-                "description":"Il prodotto non contiene sale"
+                "name": "Senza Sale",
+                "img": null,
+                "description": "Il prodotto non contiene sale"
             },
             {
-                "name":"Senza Glutine",
-                "img":null,
-                "description":"Il prodotto può essere somministrato ad animali celiaci o con intolleranze al glutine"
+                "name": "Senza Glutine",
+                "img": null,
+                "description": "Il prodotto può essere somministrato ad animali celiaci o con intolleranze al glutine"
             }
         ],
-        "overall":[
+        "overall": [
             {
-                "name":"Ingredienti potenzialmente pericolosi",
-                "description":"n.2 potenzialmente dannosi",
-                "risk":"rischio alto",
-                "details":"La presenza di queste sostanze potrebbe far male al tuo animale",
-                "ingredients":"Olio di palma - Noce di cocco",
-                "symptoms":["vomito", "diarrea", "allergia"]
+                "name": "Ingredienti potenzialmente pericolosi",
+                "description": "n.2 potenzialmente dannosi",
+                "risk": "alto",
+                "details": "La presenza di queste sostanze potrebbe far male al tuo animale",
+                "ingredients": "Olio di palma - Noce di cocco",
+                "symptoms": [
+                    "vomito",
+                    "diarrea",
+                    "allergia"
+                ]
             },
             {
-                "name":"Proteine diverse",
-                "description":"proteine diverse",
-                "risk":"rischio medio",
-                "details":"La presenza di queste combinazioni potrebbe causare effetti indesiderati al tuo animale",
-                "ingredients":"Proteine del pesce - Proteine della soia",
-                "symptoms":["fame","sete"]
+                "name": "Proteine diverse",
+                "description": "proteine diverse",
+                "risk": "medio",
+                "details": "La presenza di queste combinazioni potrebbe causare effetti indesiderati al tuo animale",
+                "ingredients": "Proteine del pesce - Proteine della soia",
+                "symptoms": [
+                    "fame",
+                    "sete"
+                ]
             },
             {
-                "name":"Ingredienti qualitativamente scarsi",
-                "description":"n.3 qualitativamente scarsi",
-                "risk":"rischio basso",
-                "details":"La presenza di queste sostanze potrebbe non essere la scelta migliore per il tuo animale",
-                "ingredients":"Farina di alghe - Aglio essiccato",
-                "symptoms":[]
+                "name": "Ingredienti qualitativamente scarsi",
+                "description": "n.3 qualitativamente scarsi",
+                "risk": "basso",
+                "details": "La presenza di queste sostanze potrebbe non essere la scelta migliore per il tuo animale",
+                "ingredients": "Farina di alghe - Aglio essiccato",
+                "symptoms": []
             }
         ],
-        "ingredients":[
+        "ingredients": [
             {
-                "description":"Oli e grassi",
-                "risk":"medium"
+                "description": "Oli e grassi",
+                "risk": "medium"
             },
             {
-                "description":"Acqua",
-                "risk":null
+                "description": "Acqua",
+                "risk": null
             },
             {
-                "description":"Carne di Tacchino",
-                "risk":null
+                "description": "Carne di Tacchino",
+                "risk": null
             },
             {
-                "description":"Amido di Mais",
-                "risk":"medium"
+                "description": "Amido di Mais",
+                "risk": "medium"
             },
             {
-                "description":"Sale",
-                "risk":"high"
+                "description": "Sale",
+                "risk": "high"
             },
             {
-                "description":"Farina di Soia",
-                "risk":null
+                "description": "Farina di Soia",
+                "risk": null
             },
             {
-                "description":"Spezzatura riso",
-                "risk":null
+                "description": "Spezzatura riso",
+                "risk": null
+            }
+        ]
+    },
+    {
+        "barcode": "sample-cat",
+        "pet": "gatto",
+        "product": "HFC jelly tonno con sogliola",
+        "img": "hfc-sogliola.jpg",
+        "points": 95,
+        "positives": [
+            {
+                "name": "100% pesce",
+                "img": null,
+                "description": "Il prodotto è interamente composto da pesce in origine idoneo al consumo umano"
+            },
+            {
+                "name": "Senza Glutine",
+                "img": null,
+                "description": "Il prodotto può essere somministrato ad animali celiaci o con intolleranze al glutine"
+            }
+        ],
+        "overall": [
+            {
+                "name": "Presenza di cereale",
+                "description": "n.1 cereale presente",
+                "risk": "basso",
+                "details": "La presenza di queste sostanze potrebbe provocare allergie nel tuo animale",
+                "ingredients": "Riso",
+                "symptoms": []
+            }
+        ],
+        "ingredients": [
+            {
+                "description": "Grassi grezzi",
+                "risk": "medium"
+            },
+            {
+                "description": "Acqua",
+                "risk": null
+            },
+            {
+                "description": "Tonno",
+                "risk": null
+            },
+            {
+                "description": "Sogliola",
+                "risk": null
+            },
+            {
+                "description": "Riso",
+                "risk": "medium"
+            },
+            {
+                "description": "Fibra grezza",
+                "risk": null
+            },
+            {
+                "description": "Ceneri grezze",
+                "risk": null
+            }
+        ]
+    },
+    {
+        "barcode": "sample-turtle",
+        "pet": "tartaruga",
+        "product": "Tetra ReptoMin",
+        "img": "reptomin.jpg",
+        "points": 65,
+        "positives": [
+            {
+                "name": "Calcio",
+                "img": null,
+                "description": "Il prodotto fornisce un apporto di calcio calibrato per una sana formazione del carapace "
+            },
+            {
+                "name": "Proteine digeribili",
+                "img": null,
+                "description": "Il prodotto contiene proteine facilmente digeribili dalle tartarughe"
+            }
+        ],
+        "overall": [
+            {
+                "name": "Ingredienti potenzialmente pericolosi",
+                "description": "n.1 potenzialmente dannoso",
+                "risk": "alto",
+                "details": "La presenza di queste sostanze potrebbe far male al tuo animale",
+                "ingredients": "Sostanze chimiche sostitutive delle vitamine",
+                "symptoms": [
+                    "vomito"
+                ]
+            },
+            {
+                "name": "Sottoprodotti vegetali",
+                "description": "sottoprodotti vegetali",
+                "risk": "basso",
+                "details": "La presenza di queste combinazioni potrebbe causare effetti indesiderati al tuo animale",
+                "ingredients": "Estratto di yucca",
+                "symptoms": [
+                    "fame"
+                ]
+            }
+        ],
+        "ingredients": [
+            {
+                "description": "Proteine grezze",
+                "risk": null
+            },
+            {
+                "description": "Acqua",
+                "risk": null
+            },
+            {
+                "description": "Fibre grezze",
+                "risk": null
+            },
+            {
+                "description": "Estratto di yucca",
+                "risk": "medium"
+            },
+            {
+                "description": "Calcio",
+                "risk": null
+            },
+            {
+                "description": "Coloranti",
+                "risk": "high"
+            },
+            {
+                "description": "Fosforo",
+                "risk": null
             }
         ]
     }
