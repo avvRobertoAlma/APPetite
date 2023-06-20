@@ -1,7 +1,6 @@
 <template>
   <ion-app>
-    <ion-router-outlet 
-    />
+    <ion-router-outlet />
   </ion-app>
 </template>
 
@@ -9,11 +8,11 @@
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
-  mounted(){
+  mounted() {
     console.log('mounted')
     this.$store.dispatch('INIT_STORE')
     this.$router.replace('/home')
   },
-  components: {IonApp, IonRouterOutlet}
+  components: { IonApp, IonRouterOutlet }
 })
 </script>
