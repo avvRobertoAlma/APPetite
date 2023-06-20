@@ -17,8 +17,10 @@ export const store = createStore({
       const active = state.pets.indexOf(pet);
       state.pets.splice(active, 1);
       localStorage.setItem("appetite_pets", JSON.stringify(state.pets));
-      console.log("active " + active);
-      if (pet.name == state.activePet.name) {
+      if (state.pets.length==0){
+        console.log("No pets")
+        store.commit("SET_ACTIVE_PET", -1);
+      } else if (pet.name == state.activePet.name) {
         console.log("reset active pet");
         store.commit("SET_ACTIVE_PET", 0);
       }
@@ -30,7 +32,12 @@ export const store = createStore({
       state.activePet = pet[idx];
     },
     SET_ACTIVE_PET(state, petIndex) {
-      state.activePet = state.pets[petIndex];
+      if (petIndex == -1){
+        state.activePet = null
+      } else {
+        state.activePet = state.pets[petIndex];
+      }
+      
     },
     SET_PETS(state, pets) {
       state.pets = pets;

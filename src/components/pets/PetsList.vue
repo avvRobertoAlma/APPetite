@@ -35,11 +35,10 @@ export default {
         removePet(pet) {
             console.log("remove " + pet.name)
             this.$store.commit('REMOVE_PET', pet)
-            console.log(this.$store.getters.getPets)
             if (this.$store.getters.getPets.length == 1) {
                 console.log("setting active pet")
                 this.$store.dispatch('SET_ACTIVE_PET', 0)
-                this.$emit("forceRerender")
+                this.$emit("updateToolbar")
             }
             if (this.$store.getters.getPets.length == 0) {
                 console.log("no animals")

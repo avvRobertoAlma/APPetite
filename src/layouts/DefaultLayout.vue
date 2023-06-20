@@ -6,10 +6,12 @@
           <ion-back-button :default-href="pageDefaultBackLink"></ion-back-button>
         </ion-buttons>
         <ion-title>{{ pageTitle }}</ion-title>
+        
         <ion-select v-model="petName" aria-label="Pets" interface="popover"
-          :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined" slot="end">
+          :value="petName" slot="end">
           <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{ pet.name }}</ion-select-option>
         </ion-select>
+        
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -50,24 +52,23 @@ export default {
   data() {
     return {
       petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null,
-      componentKey: 0,
     }
   },
-  methods: {
-    /* refreshPetName() {
-      console.log("refreshPetName")
-      console.log(this.$store.getters.getActivePet.name)
-      this.petName = this.$store.getters.getActivePet.name;
-      this.$forceUpdate();
-    }, */
-    forceRerender() {
-      console.log("force rerender")
-      this.componentKey += 1;
+  computed: {
+    storedPet(){
+      return this.$store.getters.getActivePet
     }
   },
   watch: {
     petName() {
       this.$store.dispatch('SET_ACTIVE_PET_BY_NAME', this.petName)
+    },
+    storedPet(){
+      console.log("Changed, new value is: ")
+      if (this.$store.getters.getActivePet){
+        this.petName = this.$store.getters.getActivePet.name
+      }
+      this.$forceUpdate();
     }
   }
 };

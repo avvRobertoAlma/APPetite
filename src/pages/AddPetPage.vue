@@ -1,5 +1,5 @@
 <template>
-    <default-layout pageTitle="Crea Pet" pageDefaultBackLink="/pets/list">
+    <default-layout pageTitle="Crea Pet" pageDefaultBackLink="/pets/list" :key="$store.getters.getPets.length">
         <CreateAnimalForm @save-pet="savePet" />
     </default-layout>
 </template>
