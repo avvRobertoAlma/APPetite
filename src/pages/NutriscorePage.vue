@@ -20,8 +20,7 @@
         </ion-row>
         <ion-row>
           <ion-col></ion-col>
-          <ion-col size="auto" size-lg="auto" size-md="auto" size-sm="auto" size-xl="auto" size-xs="auto"
-            style="width: 50%">
+          <ion-col style="width: 50%">
             <h1 v-if="this.$store.getters.getActivePet.type == rankings.pet" :class="nutriscoreClass">{{ rankings.points
             }}/100
             </h1>
@@ -341,8 +340,8 @@ ion-item {
 }
 
 .nutriscore-points-white {
-  border: 1px solid black;
-  background-color: lightgrey;
+  border: 1px solid orange;
+  background-color: lightyellow;
   padding: 10%;
   text-align: center;
 }
