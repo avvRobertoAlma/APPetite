@@ -167,10 +167,13 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <h5>Rischi per la salute:</h5>
+              <h5 style="font-weight: bold;">Rischi per la salute:</h5>
             </ion-col>
           </ion-row>
-          <ion-row class="ion-justify-content-between">
+          <ion-row v-if="selectedOverall.symptoms.length == 0" class="ion-justify-content-between">
+            <span style="padding:5px;">Nessun rischio</span>
+          </ion-row>
+          <ion-row v-else class="ion-justify-content-between">
             <ion-col id="overall" v-for="symptom in selectedOverall.symptoms">
               {{ symptom }}
             </ion-col>

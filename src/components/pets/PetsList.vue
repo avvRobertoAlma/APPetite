@@ -39,7 +39,7 @@ export default {
             if (this.$store.getters.getPets.length == 1) {
                 console.log("setting active pet")
                 this.$store.dispatch('SET_ACTIVE_PET', 0)
-                this.$emit("updateToolbar")
+                this.$emit("forceRerender")
             }
             if (this.$store.getters.getPets.length == 0) {
                 console.log("no animals")

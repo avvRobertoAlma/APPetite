@@ -1,12 +1,12 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar :key="componentKey">
         <ion-buttons slot="start">
           <ion-back-button :default-href="pageDefaultBackLink"></ion-back-button>
         </ion-buttons>
         <ion-title>{{ pageTitle }}</ion-title>
-        <ion-select v-model="petName" aria-label="Pets" interface="popover" @updateToolbar="refreshPetName"
+        <ion-select v-model="petName" aria-label="Pets" interface="popover"
           :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined" slot="end">
           <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{ pet.name }}</ion-select-option>
         </ion-select>
@@ -30,6 +30,9 @@ import {
   IonSelect,
   IonSelectOption
 } from "@ionic/vue";
+import { ref } from "vue";
+
+const componentKey = ref(0);
 
 export default {
   props: ["pageTitle", "pageDefaultBackLink"],
@@ -46,16 +49,21 @@ export default {
   },
   data() {
     return {
-      petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null
+      petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null,
+      componentKey: 0,
     }
   },
   methods: {
-    refreshPetName() {
+    /* refreshPetName() {
       console.log("refreshPetName")
       console.log(this.$store.getters.getActivePet.name)
       this.petName = this.$store.getters.getActivePet.name;
       this.$forceUpdate();
-    },
+    }, */
+    forceRerender() {
+      console.log("force rerender")
+      this.componentKey += 1;
+    }
   },
   watch: {
     petName() {

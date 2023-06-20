@@ -23,9 +23,9 @@
             <ion-item>
                 <ion-input type="number" required label="Anni" label-placement="floating" v-model="years" />
             </ion-item>
-            <ion-item>
+            <!-- <ion-item>
                 <ion-input type="number" required label="Mesi" label-placement="floating" v-model="months" />
-            </ion-item>
+            </ion-item> -->
         </ion-list>
         <ion-item>
             <ion-select v-model="sex" interface="popover" label="Sesso" required id="select">
@@ -70,7 +70,7 @@ export default defineComponent({
             petRace: null,
             weight: null,
             years: null,
-            months: null,
+            // months: null,
             sex: null,
             sterilized: null,
             physicalForm: null,
@@ -85,7 +85,7 @@ export default defineComponent({
                 race: this.petRace,
                 weight: this.weight,
                 years: this.years,
-                months: this.months,
+                // months: this.months,
                 sex: this.sex,
                 sterilized: this.sterilized,
                 physicalForm: this.physicalForm,
