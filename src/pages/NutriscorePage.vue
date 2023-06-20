@@ -9,7 +9,6 @@
       </ion-content>
     </div>
     <div v-if="isRankingOpen">
-      <!-- Sample dog -->
       <ion-grid>
         <ion-row class="ion-align-items-center">
           <ion-col>
@@ -72,7 +71,6 @@
           </ion-row>
         </div>
       </ion-grid>
-      <!-- End sample dog -->
     </div>
     <!-- Modal for ingredients -->
     <ion-modal :is-open="isOpenModalIngredients" style="--height: 100%;">
