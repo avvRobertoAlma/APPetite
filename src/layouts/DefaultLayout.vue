@@ -7,7 +7,7 @@
         </ion-buttons>
         <ion-title>{{ pageTitle }}</ion-title>
         
-        <ion-select v-model="petName" aria-label="Pets" interface="popover"
+        <ion-select v-model="petName" aria-label="Pets" interface="popover" v-if="$store.getters.getPets.length"
           :value="petName" slot="end">
           <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{ pet.name }}</ion-select-option>
         </ion-select>

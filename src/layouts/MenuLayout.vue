@@ -28,7 +28,7 @@
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
           <ion-title>{{ pageTitle }}</ion-title>
-          <ion-select
+          <ion-select v-if="$store.getters.getPets.length"
             v-model="petName"
             aria-label="Pets"
             interface="popover"
