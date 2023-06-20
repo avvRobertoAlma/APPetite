@@ -237,7 +237,7 @@ export default {
       if (this.rankings.points > 70) {
         return "nutriscore-points-green";
       } else if (this.rankings.points > 51) {
-        return "nutriscore-points-white";
+        return "nutriscore-points-yellow";
       } else {
         return "nutriscore-points-red";
       }
@@ -339,7 +339,7 @@ ion-item {
   text-align: center;
 }
 
-.nutriscore-points-white {
+.nutriscore-points-yellow {
   border: 1px solid orange;
   background-color: lightyellow;
   padding: 10%;
