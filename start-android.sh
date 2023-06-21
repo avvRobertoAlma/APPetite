@@ -1,4 +1,4 @@
 ionic build
-npx cap copy
 npx cap sync
+npx cap copy
 ionic capacitor open android

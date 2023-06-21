@@ -7,8 +7,7 @@
         </h3>
         <ion-img src="scanner.jpeg" @click="loadNutriscoreRanking()" />
       </ion-content>
-      <ion-content class="ion-padding" style="position: absolute"
-        v-else>
+      <ion-content class="ion-padding" style="position: absolute" v-else>
         <h3 style="margin-top: 10% !important; text-align: center !important">
           Scansiona il codice a barre del prodotto per valutarlo
         </h3>
@@ -192,21 +191,21 @@
     </ion-modal>
     <!-- end Modal for characteristics -->
     <!-- Modal for Barcode Scanner -->
-    <ion-modal :isOpen="scanActive" style="--height:100%!important;" class="barcode-scanning-modal" key="barcode-modal" >
+    <ion-modal :isOpen="scanActive" style="--height:100%!important;" class="barcode-scanning-modal" key="barcode-modal">
       <ion-header>
-      <ion-toolbar>
-        <ion-title>Scanning</ion-title>
-        <ion-buttons slot="end">
-          <ion-button @click="closeBarcodeModal">
-            <ion-icon name="close"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+        <ion-toolbar>
+          <ion-title>Scanning</ion-title>
+          <ion-buttons slot="end">
+            <ion-button @click="closeBarcodeModal">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
 
-    <ion-content id="modal-barcode-content">
-      <div id="square" class="square"></div>
-    </ion-content>
+      <ion-content id="modal-barcode-content">
+        <div id="square" class="square"></div>
+      </ion-content>
     </ion-modal>
     <!-- end Modal for Barcode Scanner -->
   </default-layout>
@@ -228,10 +227,8 @@ import {
 } from "@ionic/vue";
 
 import {
-  BarcodeScanner,
-  BarcodeFormat,
-  LensFacing,
-} from '@capacitor-mlkit/barcode-scanning';
+  BarcodeScanner
+} from '@capacitor-community/barcode-scanner';
 
 import {
   informationCircle,
@@ -330,48 +327,49 @@ export default {
     },
     async startScan() {
       alert("start scan")
-      document.querySelector('body').classList.add('barcode-scanning-active');
-      this.scanActive = true
-      // const allowed = await this.checkPermission();
-      // if (allowed) {
-      //   alert("allowed")
-      //   document.querySelector('body').classList.add('barcode-scanning-active');
-      //   this.scanActive = true
-      //   const result = await BarcodeScanner.startScan({
-      //     formats: [],
-      //     lensFacing: LensFacing.Back
-      //   });
-      //   if (result) {
-      //     this.scanActive = false
-      //     alert(result);
-      //   }
-      //   await this.stopScan();
-      // } else {
-      //   alert("not allowed")
-      // }
+      const allowed = await this.checkPermission();
+      if (allowed) {
+        alert("allowed");
+        this.scanActive = true
+        BarcodeScanner.hideBackground();
+        document.querySelector('body').classList.add('barcode-scanning-active');
+        const result = await BarcodeScanner.startScan();
+        if (result.hasContent) {
+          this.scanActive = false
+          alert(result.content);
+          await this.stopScan();
+          this.loadNutriscoreRanking()
+
+        } else {
+          await this.stopScan();
+        }
+        
+      } else {
+        alert("not allowed")
+      }
 
 
     },
     async stopScan() {
       document.querySelector('body').classList.remove('barcode-scanning-active');
+      BarcodeScanner.showBackground();
       await BarcodeScanner.stopScan();
       this.scanActive = false;
-    },  
-    async closeBarcodeModal(){
+    },
+    async closeBarcodeModal() {
       await this.stopScan();
     },
     async checkPermission() {
       return new Promise(async (resolve, reject) => {
-        const result = await BarcodeScanner.checkPermissions();
-        if (result.camera == 'granted') {
+        const status = await BarcodeScanner.checkPermission({ force: true });
+        if (status.granted) {
           resolve(true);
-        } else {
-          BarcodeScanner.requestPermissions();
+        } else if (status.denied) {
+          BarcodeScanner.openAppSettings();
           resolve(false);
         }
       });
     }
-
   },
   deactivated() {
     this.stopScan();
@@ -462,34 +460,34 @@ ion-item {
 /* BARCODE SCANNER */
 .barcode-scanning-modal {
   visibility: visible;
-  --height:100%!important;
-  --background: transparent!important;
-  --ion-background-color: transparent!important;
+  --height: 100% !important;
+  --background: transparent !important;
+  --ion-background-color: transparent !important;
 }
 
 #modal-barcode-content {
-    --background: transparent!important;
+  --background: transparent !important;
 }
 
 @media (prefers-color-scheme: dark) {
   .barcode-scanning-modal {
-    --background: transparent!important;
-    --ion-background-color: transparent!important;
+    --background: transparent !important;
+    --ion-background-color: transparent !important;
   }
 }
 
-      .square {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 16px;
-        width: 200px;
-        height: 200px;
-        border: 6px solid white;
-        box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.3);
-      }
-    
+.square {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 16px;
+  width: 200px;
+  height: 200px;
+  border: 6px solid white;
+  box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.3);
+}
+
 
 /* END MODAL BARCODE SCANNER */
 
@@ -500,8 +498,4 @@ body.barcode-scanning-active {
   --background: transparent;
   --ion-background-color: transparent;
 }
-
-
-
-
 </style>
