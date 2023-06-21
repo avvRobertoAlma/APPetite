@@ -1,11 +1,26 @@
 <template>
   <default-layout pageTitle="Nutriscore" pageDefaultBackLink="/home">
     <div v-if="isScannerOpen">
-      <ion-content class="ion-padding" style="position: absolute">
+      <ion-content class="ion-padding" style="position: absolute" v-if="developerMode">
         <h3 style="margin-top: 10% !important; text-align: center !important">
           Scansiona il codice a barre del prodotto per valutarlo
         </h3>
         <ion-img src="scanner.jpeg" @click="loadNutriscoreRanking()" />
+      </ion-content>
+      <ion-content class="ion-padding" style="position: absolute" style.--background="scanActive?'#00000000':'#ffffff'"
+        v-else>
+        <h3 style="margin-top: 10% !important; text-align: center !important">
+          Scansiona il codice a barre del prodotto per valutarlo
+        </h3>
+        <ion-button expand="full" @click="startScan" v-if="!scanActive">
+          SCAN
+        </ion-button>
+        <ion-row class="scan-button" v-if="scanActive">
+          <ion-col class="ion-no-padding">
+            <ion-button expand="full" @click="stopScan">Stop</ion-button>
+          </ion-col>
+        </ion-row>
+        <div class="scan-box" :hidden="!scanActive"></div>
       </ion-content>
     </div>
     <div v-if="isRankingOpen">
@@ -199,6 +214,9 @@ import {
   IonModal,
   IonNote,
 } from "@ionic/vue";
+
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+
 import {
   informationCircle,
   warningSharp,
@@ -233,6 +251,8 @@ export default {
       isOpenModalIngredients: false,
       isOpenModalCharacteristics: false,
       isOpenModalOverall: false,
+      developerMode: false,
+      scanActive: false,
     };
   },
   computed: {
@@ -292,6 +312,51 @@ export default {
         console.log(err);
       }
     },
+    async startScan() {
+      alert("start scan")
+      const allowed = await this.checkPermission();
+      if (allowed) {
+        alert("allowed")
+        //document.querySelector('body').classList.add('scanner-active');
+        this.scanActive = true
+        BarcodeScanner.hideBackground();
+        const result = await BarcodeScanner.startScan();
+        if (result.hasContent) {
+          this.scanActive = false
+          console.log(result.content);
+        }
+        //document.querySelector('body').classList.remove('scanner-active');
+      } else {
+        alert("not allowed")
+      }
+
+
+    },
+    stopScan() {
+      BarcodeScanner.showBackground();
+      BarcodeScanner.stopScan();
+      this.scanActive = false;
+    },
+    async checkPermission() {
+      return new Promise(async (resolve, reject) => {
+        const status = await BarcodeScanner.checkPermission({ force: true });
+        if (status.granted) {
+          resolve(true);
+        } else if (status.denied) {
+          BarcodeScanner.openAppSettings();
+          resolve(false);
+        }
+      });
+    }
+
+  },
+  deactivated() {
+    this.stopScan();
+    this.scanActive = false
+  },
+  beforeDestroy() {
+    this.stopScan();
+    this.scanActive = false
   },
 };
 </script>
@@ -368,5 +433,27 @@ ion-item {
   color: red;
   --ion-grid-column-padding: 5px;
   margin-top: 10px;
+}
+
+.scan-box {
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 100vmax rgb(0, 0, 0, 0.5);
+  content: "";
+  display: block;
+  left: 50%;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+}
+
+.scan-button {
+  margin: 0px;
+  position: absolute;
+  bottom: 100px;
+  width: 100vw;
+  height: 50px;
+  z-index: 11;
 }
 </style>
