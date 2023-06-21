@@ -5,8 +5,9 @@
       <ion-row class="ion-justify-content-between ion-margin-top">
         <ion-col></ion-col>
         <ion-col class="ion-align-self-center" size="auto">
-          Benvenuto <span style="font-weight: bold; font-style: italic;">{{ this.$store.getters.getActivePet.name
-          }}</span>!
+          Benvenut<span v-if="this.$store.getters.getActivePet.sex == 'Maschio'">o</span><span v-else>a</span> <span
+            style="font-weight: bold; font-style: italic;">{{ this.$store.getters.getActivePet.name
+            }}</span>!
         </ion-col>
         <ion-col></ion-col>
       </ion-row>

@@ -6,21 +6,11 @@
     <!-- Display all forbidden foods with filtering -->
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item
-          expand="block"
-          style="text-transform: capitalize"
-          v-for="food in forbiddenFilteredFoodList"
-          @click="setSelectedForbiddenFood(food)"
-          >{{ food.denominazione }}</ion-item
-        >
+        <ion-item expand="block" style="text-transform: capitalize" v-for="food in forbiddenFilteredFoodList"
+          @click="setSelectedForbiddenFood(food)">{{ food.denominazione }}</ion-item>
       </ion-list>
       <!-- Display the modal with more information -->
-      <ion-modal
-        :isOpen="isOpenModal"
-        @ionModalDidDismiss="closeModal"
-        :initial-breakpoint="1"
-        :breakpoints="[0, 1]"
-      >
+      <ion-modal :isOpen="isOpenModal" @ionModalDidDismiss="closeModal" :initial-breakpoint="1" :breakpoints="[0, 1]">
         <div class="block">
           <ion-grid>
             <ion-row>
@@ -31,9 +21,9 @@
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col
-                ><p>{{ selectedForbiddenFood.motivazione }}</p></ion-col
-              >
+              <ion-col>
+                <p>{{ selectedForbiddenFood.motivazione }}</p>
+              </ion-col>
             </ion-row>
           </ion-grid>
         </div>
@@ -73,7 +63,7 @@ export default defineComponent({
       if (!this.inputChars) {
         return this.forbiddenFoodList;
       } else {
-        const chars = this.inputChars;
+        const chars = this.inputChars.toLowerCase();
         console.log(chars);
         return this.forbiddenFoodList.filter(function (el) {
           return el.denominazione.includes(chars);
