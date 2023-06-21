@@ -81,7 +81,7 @@
       </ion-grid>
     </div>
     <!-- Modal for ingredients -->
-    <ion-modal :is-open="isOpenModalIngredients" style="--height: 100%;">
+    <ion-modal :is-open="isOpenModalIngredients" style="--height: 100%;" key="ingredients">
       <ion-header>
         <ion-toolbar>
           <ion-title>Dettaglio Ingredienti</ion-title>
@@ -105,7 +105,7 @@
     </ion-modal>
     <!-- end Modal for ingredients -->
     <!-- Modal for characteristics -->
-    <ion-modal :isOpen="isOpenModalCharacteristics" @ionModalDidDismiss="closeModalCharacteristics"
+    <ion-modal :isOpen="isOpenModalCharacteristics" @ionModalDidDismiss="closeModalCharacteristics" key="characteristics"
       :initial-breakpoint="1" :breakpoints="[0, 1]" id="top-down">
       <div class="block">
         <ion-grid>
@@ -136,7 +136,7 @@
     </ion-modal>
     <!-- end Modal for characteristics -->
     <!-- Modal for overall -->
-    <ion-modal :isOpen="isOpenModalOverall" @ionModalDidDismiss="closeModalOverall" :initial-breakpoint="1"
+    <ion-modal :isOpen="isOpenModalOverall" @ionModalDidDismiss="closeModalOverall" :initial-breakpoint="1" key="overall"
       :breakpoints="[0, 1]" id="top-down">
       <div class="block">
         <ion-grid>
@@ -192,7 +192,7 @@
     </ion-modal>
     <!-- end Modal for characteristics -->
     <!-- Modal for Barcode Scanner -->
-    <ion-modal :isOpen="scanActive" style="--heigth:100%;">
+    <ion-modal :isOpen="scanActive" style="--height:100%!important;" class="barcode-scanning-modal" key="barcode-modal" >
       <ion-header>
       <ion-toolbar>
         <ion-title>Scanning</ion-title>
@@ -330,22 +330,25 @@ export default {
     },
     async startScan() {
       alert("start scan")
-      const allowed = await this.checkPermission();
-      if (allowed) {
-        alert("allowed")
-        document.querySelector('body').classList.add('barcode-scanning-active');
-        this.scanActive = true
-        const result = await BarcodeScanner.scan({
-          formats: []
-        });
-        if (result) {
-          this.scanActive = false
-          alert(result);
-        }
-        await this.stopScan();
-      } else {
-        alert("not allowed")
-      }
+      document.querySelector('body').classList.add('barcode-scanning-active');
+      this.scanActive = true
+      // const allowed = await this.checkPermission();
+      // if (allowed) {
+      //   alert("allowed")
+      //   document.querySelector('body').classList.add('barcode-scanning-active');
+      //   this.scanActive = true
+      //   const result = await BarcodeScanner.startScan({
+      //     formats: [],
+      //     lensFacing: LensFacing.Back
+      //   });
+      //   if (result) {
+      //     this.scanActive = false
+      //     alert(result);
+      //   }
+      //   await this.stopScan();
+      // } else {
+      //   alert("not allowed")
+      // }
 
 
     },
@@ -457,19 +460,21 @@ ion-item {
 
 
 /* BARCODE SCANNER */
-
 .barcode-scanning-modal {
   visibility: visible;
+  --height:100%!important;
+  --background: transparent!important;
+  --ion-background-color: transparent!important;
 }
 
 #modal-barcode-content {
-        --background: transparent;
-      }
+    --background: transparent!important;
+}
 
 @media (prefers-color-scheme: dark) {
   .barcode-scanning-modal {
-    --background: transparent;
-    --ion-background-color: transparent;
+    --background: transparent!important;
+    --ion-background-color: transparent!important;
   }
 }
 
