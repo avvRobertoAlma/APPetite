@@ -236,8 +236,11 @@ http://ionicframework.com/docs/theming/ */
 
 
   }
-  body.scanner-active {
+  
+  body.barcode-scanning-active {
+    visibility: hidden;
     --background: transparent;
     --ion-background-color: transparent;
   }
+
 }
