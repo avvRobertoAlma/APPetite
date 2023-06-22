@@ -1,58 +1,63 @@
 <template>
   <default-layout pageTitle="Crea Piatto" pageDefaultBackLink="/home">
-    <ion-content class="ion-padding">
+    
+    <ion-content class="ion-padding" v-if="showForm">
       <h3>Seleziona una voce per nutriente</h3>
+    
+    <form @submit.prevent="submitForm">
       <ion-list>
         <ion-item>
-          <ion-select class="" placeholder="Seleziona proteina">
-            <div slot="label">
-              Proteina <ion-text color="danger">(Richiesto)</ion-text>
-            </div>
-            <ion-select-option value="maiale" class="selected-ingredient"
-              >Maiale</ion-select-option
-            >
-            <ion-select-option value="pollo" class="selected-ingredient"
-              >Pollo</ion-select-option
-            >
-            <ion-select-option value="manzo" class="selected-ingredient"
-              >Manzo</ion-select-option
-            >
+          <ion-select v-model="proteina" interface="popover" placeholder="Seleziona proteina" v-if="proteine.length"
+            :value="proteina" required>
+            <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in proteine">{{ choice.nome
+            }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-select placeholder="Seleziona cereale">
-            <div slot="label">
-              Cereale <ion-text color="danger">(Richiesto)</ion-text>
-            </div>
-            <ion-select-option value="riso" class="selected-ingredient"
-              >Riso</ion-select-option
-            >
-            <ion-select-option value="farro" class="selected-ingredient"
-              >Farro</ion-select-option
-            >
-            <ion-select-option value="orzo" class="selected-ingredient"
-              >Orzo</ion-select-option
-            >
+          <ion-select v-model="cereale" interface="popover" placeholder="Seleziona cereale" v-if="cereali.length"
+            :value="cereale" required>
+            <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in cereali">{{ choice.nome
+            }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-select placeholder="Seleziona fibre/vitamine">
-            <div slot="label">
-              Fibra/vitamina <ion-text color="danger">(Richiesto)</ion-text>
-            </div>
-            <ion-select-option value="fagiolini" class="selected-ingredient"
-              >Fagiolini</ion-select-option
-            >
-            <ion-select-option value="carote" class="selected-ingredient"
-              >Carote</ion-select-option
-            >
-            <ion-select-option value="zucca" class="selected-ingredient"
-              >Zucca</ion-select-option
-            >
+          <ion-select v-model="vitamina" interface="popover" placeholder="Seleziona vitamina/fibra" v-if="vitamine.length"
+            :value="vitamina" required>
+            <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in vitamine">{{ choice.nome
+            }}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
-    </ion-content>
+      <ion-button type="submit" color="success" expand="block">Calcola Dosi Consigliate</ion-button>
+    </form>
+  </ion-content>
+  
+    <ion-content class="ion-padding" v-else>
+      <h3>Dosi consigliate per {{ activePet.name }}</h3>
+      
+      <div v-if="alimentiConsigliati.alert">
+        <h3>Attenzione questa ricetta non è adeguata al tuo animale</h3>
+      </div>
+      <div v-else>
+        <ion-list>
+          <ion-item>
+            {{ alimentiConsigliati.proteine.nome }} : <strong>{{ alimentiConsigliati.proteine.valore }} g </strong>
+          </ion-item>
+          <ion-item>
+            {{ alimentiConsigliati.cereali.nome }} : <strong>{{ alimentiConsigliati.cereali.valore }} g </strong>
+          </ion-item>
+          <ion-item>
+            {{ alimentiConsigliati.vitamine.nome }} : <strong>{{ alimentiConsigliati.vitamine.valore }} g </strong>
+          </ion-item>
+        </ion-list>
+      </div>
+
+    </ion-content>  
+
+
+
+
+
   </default-layout>
 </template>
 
@@ -65,6 +70,8 @@ import {
   IonSelectOption,
   IonText,
 } from "@ionic/vue";
+
+import { Api } from "../helpers/api";
 export default {
   components: {
     IonContent,
@@ -75,8 +82,63 @@ export default {
     IonText,
   },
   data() {
-    return {};
+    return {
+      proteina: null,
+      cereale: null,
+      vitamina: null,
+      alimentiConsigliati:null,
+      showForm:true,
+      showResult:false
+    };
   },
+  computed: {
+    activePet() {
+      return this.$store.getters.getActivePet
+    },
+    proteine() {
+      return Api.getFoodChoicesPerRace(this.$store.getters.getActivePet.type).proteine
+    },
+    cereali(){
+      return Api.getFoodChoicesPerRace(this.$store.getters.getActivePet.type).cereali
+    },
+    vitamine(){
+      return Api.getFoodChoicesPerRace(this.$store.getters.getActivePet.type).vitamine
+    }
+  },
+  methods:{
+    submitForm(){
+      if (!this.proteina){
+        alert("Per favore inserire una proteina")
+        return
+      }
+      if (!this.cereale){
+        alert("Per favore inserire un cereale")
+        return
+      }
+      if (!this.vitamina){
+        alert("Per favore inserire una vitamina/fibra")
+        return
+      }
+      this.alimentiConsigliati = Api.getRecommendedDoses(
+        this.$store.getters.getActivePet.type, 
+        Number(this.$store.getters.getActivePet.weight), 
+        this.proteina, this.cereale, this.vitamina)
+
+      this.showForm = false
+      this.showResult = true
+    }
+  },
+  watch: {
+    activePet(){
+      if (this.showResult){
+        this.alimentiConsigliati = Api.getRecommendedDoses(
+        this.$store.getters.getActivePet.type, 
+        Number(this.$store.getters.getActivePet.weight), 
+        this.alimentiConsigliati.proteine.nome, this.alimentiConsigliati.cereali.nome, this.alimentiConsigliati.vitamine.nome)
+      }
+    }
+  }
+
 };
 </script>
 
