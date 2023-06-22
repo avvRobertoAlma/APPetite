@@ -109,5 +109,25 @@ export const Api = {
     recommendedDoses.alert = false
     return recommendedDoses
 
+  },
+  generateFullRecommendations(petName, petRace, weight, recommendedDoses){
+    let result = {
+      petName: petName,
+      petRace: petRace,
+      weight: weight,
+      recommendedDoses: recommendedDoses,
+      proteineAlternatives: choices[petRace].proteine.filter(function(element){
+        return element.nome != recommendedDoses.proteine.nome
+      }),
+      cerealAlternatives: choices[petRace].cereali.filter(function(element){
+        return element.nome != recommendedDoses.cereali.nome
+      }),
+      vitamineAlternatives:choices[petRace].vitamine.filter(function(element){
+        return element.nome != recommendedDoses.proteine.nome
+      })
+    }
+    return result
   }
+
+  
 };

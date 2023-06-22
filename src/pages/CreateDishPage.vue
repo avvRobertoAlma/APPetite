@@ -50,6 +50,7 @@
             {{ alimentiConsigliati.vitamine.nome }} : <strong>{{ alimentiConsigliati.vitamine.valore }} g </strong>
           </ion-item>
         </ion-list>
+        <ion-button color="success" expand="block" @click="esportaConsigli">Esporta in PDF</ion-button>
       </div>
 
     </ion-content>  
@@ -70,8 +71,10 @@ import {
   IonSelectOption,
   IonText,
 } from "@ionic/vue";
+import { PDFGenerator } from '@awesome-cordova-plugins/pdf-generator';
 
 import { Api } from "../helpers/api";
+import { Services } from "../helpers/services"
 export default {
   components: {
     IonContent,
@@ -126,6 +129,25 @@ export default {
 
       this.showForm = false
       this.showResult = true
+    },
+    async esportaConsigli(){
+      const html = Services.generateHTMLrecommendations(Api.generateFullRecommendations(
+        this.$store.getters.getActivePet.name,  
+        this.$store.getters.getActivePet.type, 
+        Number(this.$store.getters.getActivePet.weight),
+        this.alimentiConsigliati
+      ))
+      try {
+        let options = {
+                documentSize: 'A4',
+                type: 'share'
+              }
+        const result = await PDFGenerator.fromData(html, options)
+      } catch (err){
+        alert(err)
+      }
+
+      
     }
   },
   watch: {
