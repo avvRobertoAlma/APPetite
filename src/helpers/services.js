@@ -19,7 +19,7 @@ export const Services = {
                         <thead>
                         <tr>
                             <th>Nutriente</th>
-                            <th>Quantitità</th>
+                            <th>Quantità</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,7 +37,7 @@ export const Services = {
                         <thead>
                         <tr>
                             <th>Nutriente</th>
-                            <th>Quantitità</th>
+                            <th>Quantità</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,7 +55,7 @@ export const Services = {
                         <thead>
                         <tr>
                             <th>Nutriente</th>
-                            <th>Quantitità</th>
+                            <th>Quantità</th>
                         </tr>
                         </thead>
                         <tbody>

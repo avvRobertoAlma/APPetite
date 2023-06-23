@@ -126,7 +126,7 @@ export const Api = {
       return element.nome != recommendedDoses.cereali.nome
     })
     const _vitamineAlternatives = choices[petRace].vitamine.filter(function(element){
-      return element.nome != recommendedDoses.proteine.nome
+      return element.nome != recommendedDoses.vitamine.nome
     })
 
     let proteineAlternatives = []
