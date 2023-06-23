@@ -154,7 +154,8 @@ export default {
       try {
         let options = {
                 documentSize: 'A4',
-                type: 'share'
+                type: 'share',
+                fileName: this.activePet.name + '_dish.pdf'
               }
         const base64 = await PDFGenerator.fromData(html, options)
         // var fileName = this.activePet.name + '_dish.pdf';
