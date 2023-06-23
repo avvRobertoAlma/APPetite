@@ -13,15 +13,29 @@
             }}</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-item>
+        <ion-item v-if="activePet.type != 'tartaruga'">
           <ion-select v-model="cereale" interface="popover" placeholder="Seleziona cereale" label="cereali" v-if="cereali.length"
             :value="cereale" required>
             <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in cereali">{{ choice.nome
             }}</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-item>
+        <ion-item v-else>
+          <ion-select v-model="cereale" interface="popover" placeholder="Seleziona fibra" label="fibre" v-if="cereali.length"
+            :value="cereale" required>
+            <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in cereali">{{ choice.nome
+            }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item v-if="activePet.type != 'tartaruga'">
           <ion-select v-model="vitamina" interface="popover" placeholder="Seleziona vitamina/fibra" label="vitamine/fibre" v-if="vitamine.length"
+            :value="vitamina" required>
+            <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in vitamine">{{ choice.nome
+            }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item v-else>
+          <ion-select v-model="vitamina" interface="popover" placeholder="Seleziona vitamina" label="vitamine" v-if="vitamine.length"
             :value="vitamina" required>
             <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in vitamine">{{ choice.nome
             }}</ion-select-option>
@@ -140,9 +154,13 @@ export default {
       try {
         let options = {
                 documentSize: 'A4',
-                type: 'share'
+                type: 'base64'
               }
-        const result = await PDFGenerator.fromData(html, options)
+        const base64 = await PDFGenerator.fromData(html, options)
+        var fileName = this.activePet.name + '_dish.pdf';
+        var folderpath = "file:///storage/emulated/0/Download/";
+        var contentType = "application/pdf";
+        Services.savebase64AsPDF(folderpath, fileName, base64, contentType);
       } catch (err){
         alert(err)
       }
@@ -153,10 +171,11 @@ export default {
   watch: {
     activePet(){
       if (this.showResult){
+        console.log("cambiato pet")
         this.alimentiConsigliati = Api.getRecommendedDoses(
         this.$store.getters.getActivePet.type, 
         Number(this.$store.getters.getActivePet.weight), 
-        this.alimentiConsigliati.proteine.nome, this.alimentiConsigliati.cereali.nome, this.alimentiConsigliati.vitamine.nome)
+        this.proteina, this.cereale, this.vitamina)
       }
       this.$forceUpdate()
     }
