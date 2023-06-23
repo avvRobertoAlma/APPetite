@@ -158,6 +158,7 @@ export default {
         Number(this.$store.getters.getActivePet.weight), 
         this.alimentiConsigliati.proteine.nome, this.alimentiConsigliati.cereali.nome, this.alimentiConsigliati.vitamine.nome)
       }
+      this.$forceUpdate()
     }
   }
 
