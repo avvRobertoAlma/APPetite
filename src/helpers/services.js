@@ -1,4 +1,5 @@
 import Handlebars from "handlebars"
+import { Filesystem, Directory } from '@capacitor/filesystem';
 
 export const Services = {
     generateHTMLrecommendations(recommendations){
@@ -81,23 +82,19 @@ export const Services = {
         return html
         
     },
-    savebase64AsPDF(folderpath,filename,content,contentType){
+    async savebase64AsPDF(path,base64){
       // Convert the base64 string in a Blob
-      var DataBlob = b64toBlob(content,contentType);
+        try {
+            await Filesystem.writeFile({
+                path: path,
+                data: base64,
+              });
+              alert('File salvato con successo')
+
+        } catch (err){
+            alert(err)
+        }
       
-      console.log("Starting to write the file :3");
-      
-      window.resolveLocalFileSystemURL(folderpath, function(dir) {
-        dir.getFile(filename, {create:true}, function(file) {
-            file.createWriter(function(fileWriter) {
-                console.log("Writing content to file");
-                fileWriter.write(DataBlob);
-                alert("Il File è stato creato con successo nella cartella download.");
-            }, function(){
-                alert('Unable to save file in path '+ folderpath);
-            });
-        });
-      });
     }
 }
 
