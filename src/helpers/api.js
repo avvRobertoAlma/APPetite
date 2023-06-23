@@ -110,22 +110,55 @@ export const Api = {
     return recommendedDoses
 
   },
-  generateFullRecommendations(petName, petRace, weight, recommendedDoses){
+  generateFullRecommendations(petName, petRace, weigth, recommendedDoses){
     let result = {
       petName: petName,
       petRace: petRace,
-      weight: weight,
+      weigth: weigth,
       recommendedDoses: recommendedDoses,
-      proteineAlternatives: choices[petRace].proteine.filter(function(element){
-        return element.nome != recommendedDoses.proteine.nome
-      }),
-      cerealAlternatives: choices[petRace].cereali.filter(function(element){
-        return element.nome != recommendedDoses.cereali.nome
-      }),
-      vitamineAlternatives:choices[petRace].vitamine.filter(function(element){
-        return element.nome != recommendedDoses.proteine.nome
+      
+    }
+
+    const _proteineAlternatives = choices[petRace].proteine.filter(function(element){
+      return element.nome != recommendedDoses.proteine.nome
+    })
+    const _cerealAlternatives = choices[petRace].cereali.filter(function(element){
+      return element.nome != recommendedDoses.cereali.nome
+    })
+    const _vitamineAlternatives = choices[petRace].vitamine.filter(function(element){
+      return element.nome != recommendedDoses.proteine.nome
+    })
+
+    let proteineAlternatives = []
+    for (let i=0; i<_proteineAlternatives.length; i++){
+      proteineAlternatives.push({
+        nome: _proteineAlternatives[i].nome,
+        valore: weigth * _proteineAlternatives[i].quantitàGrammiPerKgPeso
       })
     }
+
+    result.proteineAlternatives = proteineAlternatives
+
+    let cerealAlternatives = []
+    for (let i=0; i<_cerealAlternatives.length; i++){
+      cerealAlternatives.push({
+        nome: _cerealAlternatives[i].nome,
+        valore: weigth * _cerealAlternatives[i].quantitàGrammiPerKgPeso
+      })
+    }
+
+    result.cerealAlternatives = cerealAlternatives
+
+    let vitamineAlternatives = []
+    for (let i=0; i<_vitamineAlternatives.length; i++){
+      vitamineAlternatives.push({
+        nome: _vitamineAlternatives[i].nome,
+        valore: weigth * _vitamineAlternatives[i].quantitàGrammiPerKgPeso
+      })
+    }
+
+    result.vitamineAlternatives = vitamineAlternatives
+
     return result
   }
 

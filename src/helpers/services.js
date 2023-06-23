@@ -8,10 +8,64 @@ export const Services = {
                     <h3 class='centered'>generati con APPetite</h3>
                     <h4 class='centered'>Dosi consigliate per ${recommendations.petName}</h4>
                     <ul class="list">
-                        <li>Proteine: ${recommendations.recommendedDoses.proteine.nome} g di ${recommendations.recommendedDoses.proteine.valore}</li>
-                        <li>Cereali: ${recommendations.recommendedDoses.cereali.nome} g di ${recommendations.recommendedDoses.cereali.valore}</li>
-                        <li>Vitamine/Fibre: ${recommendations.recommendedDoses.vitamine.nome} g di ${recommendations.recommendedDoses.vitamine.valore}</li>
+                        <li>Proteine: ${recommendations.recommendedDoses.proteine.valore} g di ${recommendations.recommendedDoses.proteine.nome}  </li>
+                        <li>Cereali: ${recommendations.recommendedDoses.cereali.valore}  g di ${recommendations.recommendedDoses.cereali.nome} </li>
+                        <li>Vitamine/Fibre:  ${recommendations.recommendedDoses.vitamine.valore} g di ${recommendations.recommendedDoses.vitamine.nome}</li>
                     </ul>
+
+                    <h4 class='centered'>Alternative per le proteine</h4>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nutriente</th>
+                            <th>Quantitità</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each proteineAlternatives}}
+                        <tr>
+                            <td>{{this.nome}}</td>
+                            <td>{{this.valore}}</td>
+                        </tr>
+                    {{/each}}
+                        </tbody>
+                    </table>
+
+                    <h4 class='centered'>Alternative per i cereali</h4>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nutriente</th>
+                            <th>Quantitità</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each cerealAlternatives}}
+                        <tr>
+                            <td>{{this.nome}}</td>
+                            <td>{{this.valore}}</td>
+                        </tr>
+                    {{/each}}
+                        </tbody>
+                    </table>
+
+                    <h4 class='centered'>Alternative per le vitamine/fibre</h4>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nutriente</th>
+                            <th>Quantitità</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each vitamineAlternatives}}
+                        <tr>
+                            <td>{{this.nome}}</td>
+                            <td>{{this.valore}}</td>
+                        </tr>
+                    {{/each}}
+                        </tbody>
+                    </table>
         `        
         /* variabile che conterrà tutto l'html */
         let doc = `<style>
@@ -23,7 +77,7 @@ export const Services = {
 
         //initialize template
         var template = Handlebars.compile(doc)
-        var html = template()
+        var html = template(recommendations)
         return html
         
     }

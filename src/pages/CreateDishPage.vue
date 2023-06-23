@@ -7,21 +7,21 @@
     <form @submit.prevent="submitForm">
       <ion-list>
         <ion-item>
-          <ion-select v-model="proteina" interface="popover" placeholder="Seleziona proteina" v-if="proteine.length"
+          <ion-select v-model="proteina" interface="popover" placeholder="Seleziona proteina" label="proteine" v-if="proteine.length"
             :value="proteina" required>
             <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in proteine">{{ choice.nome
             }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-select v-model="cereale" interface="popover" placeholder="Seleziona cereale" v-if="cereali.length"
+          <ion-select v-model="cereale" interface="popover" placeholder="Seleziona cereale" label="cereali" v-if="cereali.length"
             :value="cereale" required>
             <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in cereali">{{ choice.nome
             }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-select v-model="vitamina" interface="popover" placeholder="Seleziona vitamina/fibra" v-if="vitamine.length"
+          <ion-select v-model="vitamina" interface="popover" placeholder="Seleziona vitamina/fibra" label="vitamine/fibre" v-if="vitamine.length"
             :value="vitamina" required>
             <ion-select-option :value="choice.nome" class="selected-ingredient" v-for="choice in vitamine">{{ choice.nome
             }}</ion-select-option>
@@ -164,9 +164,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .selected-ingredient {
   color: black;
   --background-color: red;
+}
+
+ion-select {
+  color:black!important;
 }
 </style>
