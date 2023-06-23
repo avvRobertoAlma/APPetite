@@ -88,12 +88,11 @@ export const Services = {
       console.log("Starting to write the file :3");
       
       window.resolveLocalFileSystemURL(folderpath, function(dir) {
-        console.log("Access to the directory granted succesfully");
         dir.getFile(filename, {create:true}, function(file) {
-            console.log("File created succesfully.");
             file.createWriter(function(fileWriter) {
                 console.log("Writing content to file");
                 fileWriter.write(DataBlob);
+                alert("Il File è stato creato con successo nella cartella download.");
             }, function(){
                 alert('Unable to save file in path '+ folderpath);
             });

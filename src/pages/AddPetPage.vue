@@ -18,8 +18,12 @@ export default {
             if (this.$store.getters.getPets.length == 1) {
                 console.log("setting active pet")
                 this.$store.dispatch('SET_ACTIVE_PET', 0)
+                this.$router.replace('/home')
+            } else {
+                this.$router.replace('/pets/list')
             }
-            this.$router.replace('/pets/list')
+            
+            
         }
     }
 }
