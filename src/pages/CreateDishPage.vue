@@ -158,7 +158,7 @@ export default {
               }
         const base64 = await PDFGenerator.fromData(html, options)
         var fileName = this.activePet.name + '_dish.pdf';
-        var fname = "file:///storage/emulated/0/Download/" + fileName;
+        var fname = '/storage/emulated/0/Download/' + fileName;
         //var folderpath = cordova.file.dataDirectory + "/Download/";
         //var contentType = "application/pdf";
         Services.savebase64AsPDF(fname, base64);

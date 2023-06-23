@@ -88,6 +88,7 @@ export const Services = {
             await Filesystem.writeFile({
                 path: path,
                 data: base64,
+                directory: Directory.External,
               });
               alert('File salvato con successo')
 
