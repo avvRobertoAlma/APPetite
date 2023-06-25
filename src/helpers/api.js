@@ -61,6 +61,10 @@ export const Api = {
     /* imposta oggetto che conterrà le dosi consigliate */
     let recommendedDoses = {}
 
+    /* errors contiene la lista degli alimenti che il pet attivo non può mangiare */
+    recommendedDoses.errors = []
+    recommendedDoses.alert = false
+
     for (let i=0; i< proteine.length;i++){
       if (proteins == proteine[i].nome){
         recommendedDoses.proteine = {
@@ -73,7 +77,10 @@ export const Api = {
 
     if (!recommendedDoses.hasOwnProperty('proteine')){
       recommendedDoses.alert = true
-      return recommendedDoses
+      recommendedDoses.errors.push({
+        tipo: 'proteine',
+        nome: proteins
+      })
     }
 
     for (let i=0; i< cereali.length;i++){
@@ -88,7 +95,10 @@ export const Api = {
 
     if (!recommendedDoses.hasOwnProperty('cereali')){
       recommendedDoses.alert = true
-      return recommendedDoses
+      recommendedDoses.errors.push({
+        tipo: 'cereali',
+        nome: cereals
+      })
     }
 
     for (let i=0; i< vitamine.length;i++){
@@ -103,10 +113,13 @@ export const Api = {
 
     if (!recommendedDoses.hasOwnProperty('vitamine')){
       recommendedDoses.alert = true
-      return recommendedDoses
+      recommendedDoses.errors.push({
+        tipo: 'vitamine',
+        nome: vitamins
+      })
     }
 
-    recommendedDoses.alert = false
+    
     return recommendedDoses
 
   },

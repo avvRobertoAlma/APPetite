@@ -53,7 +53,12 @@
       <h3>Dosi consigliate per {{ activePet.name }}</h3>
       
       <div style="margin-top: 20px; text-align:center" v-if="alimentiConsigliati.alert">
-        <span id="wrong-dish">Attenzione questo cibo non è adeguato a {{ activePet.name }}</span>
+        <p id="wrong-dish">Attenzione questo cibo non è adeguato</p>
+        <p>{{ activePet.name }} non può mangiare:
+        <ul>
+          <li v-for="el in alimentiConsigliati.errors">{{ el.nome }}</li>
+        </ul></p>
+
       </div>
       <div v-else>
         <ion-list>
