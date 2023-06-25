@@ -1,5 +1,5 @@
 <template>
-  <default-layout pageTitle="Pets" pageDefaultBackLink="/home">
+  <default-layout pageTitle="I miei pets" pageDefaultBackLink="/home">
     <template v-slot:actions-end>
       <ion-button router-link="/add-pet">
         <ion-icon slot="icon-only" :icon="add"></ion-icon>
@@ -7,7 +7,7 @@
     </template>
     <pets-list :pets="pets"></pets-list>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button @click="addPet()">
+    <ion-fab-button color="success" @click="addPet()">
       <ion-icon :icon="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

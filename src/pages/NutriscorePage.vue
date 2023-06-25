@@ -1,5 +1,5 @@
 <template>
-  <default-layout pageTitle="Nutriscore" pageDefaultBackLink="/home">
+  <default-layout pageTitle="Scanner qualità" pageDefaultBackLink="/home">
     <div v-if="isScannerOpen">
       <ion-content class="ion-padding" style="position: absolute" v-if="developerMode">
         <h3 style="margin-top: 10% !important; text-align: center !important">
@@ -11,7 +11,7 @@
         <h3 style="margin-top: 10% !important; text-align: center !important">
           Scansiona il codice a barre del prodotto per valutarlo
         </h3>
-        <ion-button expand="full" @click="startScan" v-if="!scanActive">
+        <ion-button style="margin-top: 80px !important" color="success" expand="full" @click="startScan" v-if="!scanActive">
           SCAN
         </ion-button>
       </ion-content>
@@ -55,7 +55,7 @@
               <ion-note>Ingredienti</ion-note>
             </ion-col>
             <ion-col push="3">
-              <a @click="viewIngredients">Vedi tutto</a>
+              <a @click="viewIngredients">Vedi ingredienti</a>
             </ion-col>
           </ion-row>
           <ion-row>

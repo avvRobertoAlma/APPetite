@@ -39,7 +39,7 @@
                 <ion-select-option value="No">No</ion-select-option>
             </ion-select>
         </ion-item>
-        <ion-item>
+        <ion-item v-if="petType != 'tartaruga'">
             <ion-select v-model="physicalForm" interface="popover" label="Forma fisica" required id="select">
                 <ion-select-option value="Sovrappeso">Sovrappeso</ion-select-option>
                 <ion-select-option value="Normale">Normale</ion-select-option>
@@ -88,7 +88,7 @@ export default defineComponent({
                 // months: this.months,
                 sex: this.sex,
                 sterilized: this.sterilized,
-                physicalForm: this.physicalForm,
+                physicalForm: (this.physicalForm) ? this.physicalForm : undefined,
                 physicalActivity: this.physicalActivity
             }
             this.$emit('save-pet', pet)

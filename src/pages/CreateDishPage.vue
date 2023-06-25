@@ -1,11 +1,13 @@
 <template>
-  <default-layout pageTitle="Crea Piatto" pageDefaultBackLink="/home">
+  <default-layout pageTitle="Dosa il cibo" pageDefaultBackLink="/home">
     
     <ion-content class="ion-padding" v-if="showForm">
-      <h3>Seleziona una voce per nutriente</h3>
-    
     <form @submit.prevent="submitForm">
       <ion-list>
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label style="text-align:center">Seleziona una voce per nutriente</ion-label>
+          </ion-item-divider>
         <ion-item>
           <ion-select v-model="proteina" interface="popover" placeholder="Seleziona proteina" label="proteine" v-if="proteine.length"
             :value="proteina" required>
@@ -41,16 +43,17 @@
             }}</ion-select-option>
           </ion-select>
         </ion-item>
+      </ion-item-group>
       </ion-list>
-      <ion-button type="submit" color="success" expand="block">Calcola Dosi Consigliate</ion-button>
+      <ion-button type="submit" color="success" expand="block">Calcola Dosi Giornaliere Consigliate</ion-button>
     </form>
   </ion-content>
   
     <ion-content class="ion-padding" v-else>
       <h3>Dosi consigliate per {{ activePet.name }}</h3>
       
-      <div v-if="alimentiConsigliati.alert">
-        <h3>Attenzione questa ricetta non è adeguata al tuo animale</h3>
+      <div style="margin-top: 20px; text-align:center" v-if="alimentiConsigliati.alert">
+        <span id="wrong-dish">Attenzione questo cibo non è adeguato a {{ activePet.name }}</span>
       </div>
       <div v-else>
         <ion-list>
@@ -84,6 +87,8 @@ import {
   IonSelect,
   IonSelectOption,
   IonText,
+  IonItemDivider,
+  IonItemGroup
 } from "@ionic/vue";
 import { PDFGenerator } from '@awesome-cordova-plugins/pdf-generator';
 
@@ -97,6 +102,8 @@ export default {
     IonSelect,
     IonSelectOption,
     IonText,
+    IonItemDivider,
+    IonItemGroup
   },
   data() {
     return {
@@ -195,5 +202,11 @@ export default {
 
 ion-select {
   color:black!important;
+}
+
+#wrong-dish {
+  font-weight: bold;
+  text-decoration: underline;
+  color: red;
 }
 </style>

@@ -2,9 +2,16 @@
     <ion-list>
         <ion-item v-for="pet in pets" :key="pet.name">
             {{ pet.name }}
-            <ion-button fill="outline" style="--border-width: 0px;" @click="removePet(pet)" slot="end">
+            <ion-button fill="outline" style="--border-width: 0px;" @click="presentAlertConfirm(pet)" slot="end">
                 <ion-icon size="small" slot="icon-only" :icon="trashOutline" id="remove"></ion-icon>
             </ion-button>
+            <!-- <ion-alert
+                trigger="present-alert"
+                header="Attenzione!"
+                message="Vuoi cancellare l'animale?"
+                :buttons="alertButtons"
+                @didDismiss="setResult(roleMessage, pet)"
+            ></ion-alert> -->
         </ion-item>
     </ion-list>
 </template>
@@ -15,6 +22,8 @@ import {
     IonItem,
     IonIcon,
     IonButton,
+    IonAlert,
+    alertController,
 } from "@ionic/vue";
 import {
     trashOutline
@@ -25,6 +34,7 @@ export default {
         IonItem,
         IonList,
         IonButton,
+        IonAlert,
     },
     data() {
         return {
@@ -32,7 +42,28 @@ export default {
         };
     },
     methods: {
-        removePet(pet) {
+      presentAlertConfirm(pet) {
+      return alertController
+        .create({
+          header: 'Attenzione!',
+          message: "Vuoi cancellare l'animale?",
+          buttons: [
+            {
+              text: 'Indietro',
+              role: 'cancel',
+            },
+            {
+              text: 'OK',
+              handler: () => {
+                this.removePet(pet)
+              },
+            },
+          ],
+        })
+        .then(alert => alert.present())
+    },
+
+      removePet(pet) {
             console.log("remove " + pet.name)
             this.$store.commit('REMOVE_PET', pet)
             if (this.$store.getters.getPets.length == 1) {

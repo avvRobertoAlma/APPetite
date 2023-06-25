@@ -6,8 +6,13 @@
     <!-- Display all forbidden foods with filtering -->
     <ion-content class="ion-padding">
       <ion-list>
+        <ion-item-group>
+        <ion-item-divider>
+          <ion-label style="text-align:center"> Alimenti vietati per {{ this.$store.getters.getActivePet.name }} </ion-label>
+        </ion-item-divider>
         <ion-item expand="block" style="text-transform: capitalize" v-for="food in forbiddenFilteredFoodList"
           @click="setSelectedForbiddenFood(food)">{{ food.denominazione }}</ion-item>
+        </ion-item-group>
       </ion-list>
       <!-- Display the modal with more information -->
       <ion-modal :isOpen="isOpenModal" @ionModalDidDismiss="closeModal" :initial-breakpoint="1" :breakpoints="[0, 1]">
@@ -44,6 +49,9 @@ import {
   IonToolbar,
   IonContent,
   IonTitle,
+  IonItemGroup,
+  IonItemDivider,
+  IonLabel
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { Api } from "../helpers/api";
@@ -100,6 +108,9 @@ export default defineComponent({
     IonToolbar,
     IonContent,
     IonTitle,
+    IonItemGroup,
+    IonItemDivider,
+    IonLabel
   },
 });
 </script>
@@ -128,5 +139,14 @@ h3 {
 
 ion-modal {
   --height: auto;
+}
+
+ion-item-divider {
+  border: 1px solid;
+  border-color: #f6a300;
+  color:black;
+  font-weight: bold;
+  font-size: 16px;
+  text-align:center;
 }
 </style>
