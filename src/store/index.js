@@ -6,6 +6,10 @@ export const store = createStore({
     return {
       pets: [],
       activePet: null,
+      suggestedFoods: null,
+      protein: null,
+      cereal: null,
+      vitamin: null,
     };
   },
   mutations: {
@@ -53,6 +57,18 @@ export const store = createStore({
     SET_PETS(state, pets) {
       state.pets = pets;
     },
+    SET_FOODS(state, foods) {
+      state.suggestedFoods = foods;
+    },
+    SET_PROTEIN(state, protein) {
+      state.protein = protein;
+    },
+    SET_CEREAL(state, cereal) {
+      state.cereal = cereal;
+    },
+    SET_VITAMIN(state, vitamin) {
+      state.vitamin = vitamin;
+    },
   },
   actions: {
     INIT_STORE(store) {
@@ -86,6 +102,18 @@ export const store = createStore({
     },
     getActivePet(state) {
       return state.activePet;
+    },
+    getFoods(state) {
+      return state.suggestedFoods;
+    },
+    getVitamin(state) {
+      return state.vitamin;
+    },
+    getCereal(state) {
+      return state.cereal;
+    },
+    getProtein(state) {
+      return state.protein;
     },
   },
 });
