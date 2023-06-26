@@ -2,6 +2,9 @@
     <ion-list>
         <ion-item v-for="pet in pets" :key="pet.name">
             {{ pet.name }}
+            <ion-button fill="outline" style="--border-width: 0px;" @click="edit(pet)">
+                <ion-icon size="small" slot="icon-only" :icon="pencil"></ion-icon>
+            </ion-button>
             <ion-button fill="outline" style="--border-width: 0px;" @click="presentAlertConfirm(pet)" slot="end">
                 <ion-icon size="small" slot="icon-only" :icon="trashOutline" id="remove"></ion-icon>
             </ion-button>
@@ -26,7 +29,7 @@ import {
     alertController,
 } from "@ionic/vue";
 import {
-    trashOutline
+    trashOutline, pencil
 } from "ionicons/icons";
 export default {
     props: ['pets'],
@@ -39,6 +42,8 @@ export default {
     data() {
         return {
             trashOutline: trashOutline,
+            pencil:pencil
+
         };
     },
     methods: {
@@ -76,8 +81,13 @@ export default {
                 this.$router.replace('/add-pet')
             }
             else { this.$router.replace('/pets/list') }
-        }
+        },
+        edit(pet){
+        this.$router.replace(`/edit-pet/${pet.name}`)
     }
+    },
+    
+
 }
 </script>
 

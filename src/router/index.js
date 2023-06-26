@@ -22,6 +22,11 @@ const routes = [
     component: () => import('../pages/AddPetPage.vue')
   },
   {
+    path: '/edit-pet/:name',
+    name:'edit-pet',
+    component: () => import('../pages/EditPetPage.vue')
+  },
+  {
     path:'/pets/list',
     name: 'petsList',
     component: MyPets

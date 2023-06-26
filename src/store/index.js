@@ -13,6 +13,14 @@ export const store = createStore({
       state.pets.push(pet);
       localStorage.setItem("appetite_pets", JSON.stringify(state.pets));
     },
+    EDIT_PET(state, form){
+      const idx = store.state.pets.findIndex(function (el) {
+        return el.name == form.oldPetName;
+      });
+      console.log(idx);
+      store.state.pets[idx] = form.pet
+      localStorage.setItem("appetite_pets", JSON.stringify(state.pets));
+    },
     REMOVE_PET(state, pet) {
       const active = state.pets.indexOf(pet);
       state.pets.splice(active, 1);
@@ -75,6 +83,6 @@ export const store = createStore({
     },
     getActivePet(state) {
       return state.activePet;
-    },
+    }
   },
 });
