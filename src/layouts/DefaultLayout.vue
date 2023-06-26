@@ -1,7 +1,7 @@
 <template>
-  <ion-page>
+  <ion-page :key="$route.fullPath">
     <ion-header>
-      <ion-toolbar :key="componentKey">
+      <ion-toolbar :key="$route.fullPath">
         <ion-buttons slot="start">
           <ion-back-button :default-href="pageDefaultBackLink"></ion-back-button>
         </ion-buttons>

@@ -78,7 +78,11 @@ export default {
     },
     edit(pet) {
       console.log("change " + pet.name)
-      this.$router.replace(`/edit-pet/${pet.name}`)
+      /* 
+      Utilizzando router.push si inserisce un nuovo elemento nello stack di navigazione
+      Prima utilizzavamo router.replace che invece sostituiva l'elemento corrente dello stack con un nuovo elemento
+      */
+      this.$router.push(`/edit-pet/${pet.name}`)
     }
   },
 
