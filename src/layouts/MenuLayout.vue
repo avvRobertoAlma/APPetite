@@ -179,8 +179,4 @@ ion-select::part(icon) {
 ion-select::part(text) {
   flex: 0 0 auto;
 }
-
-ion-icon {
-  color: white !important;
-}
 </style>

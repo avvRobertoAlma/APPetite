@@ -77,7 +77,7 @@ export default defineComponent({
             physicalActivity: this.editablePet.physicalActivity,
         }
     },
-    props:['editablePet'],
+    props: ['editablePet'],
     methods: {
         submitForm() {
             const pet = {
@@ -97,6 +97,7 @@ export default defineComponent({
                 oldPetName: this.oldPetName
             }
             this.$emit('edit-pet', form)
+            this.$emit("updateToolbar")
         }
     },
     computed: {
