@@ -7,48 +7,48 @@
     </template>
     <pets-list :pets="pets"></pets-list>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button color="success" @click="addPet()">
-      <ion-icon :icon="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+      <ion-fab-button color="success" @click="addPet()">
+        <ion-icon :icon="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </default-layout>
 </template>
 
 <script>
 import {
-    IonIcon,
-    IonInput,
-    IonButton,
-    IonFab,
-    IonFabButton
+  IonIcon,
+  IonInput,
+  IonButton,
+  IonFab,
+  IonFabButton
 } from "@ionic/vue"
 import PetsList from '../components/pets/PetsList.vue'
 import { add } from 'ionicons/icons'
 export default {
-    components: {
-        IonIcon,
-        IonInput,
-        IonButton,
-        PetsList,
-        IonFab,
-        IonFabButton
+  components: {
+    IonIcon,
+    IonInput,
+    IonButton,
+    PetsList,
+    IonFab,
+    IonFabButton
+  },
+  computed: {
+    pets() {
+      return this.$store.getters.getPets
     },
-    computed:{
-        pets(){
-            return this.$store.getters.getPets
-        },
-        
-    },
-    data(){
-      return {
-        add:add
-      }
-    },
-    methods:{
-      addPet(){
-          this.$router.replace('/add-pet')
-        }
+
+  },
+  data() {
+    return {
+      add: add
     }
+  },
+  methods: {
+    addPet() {
+      this.$router.push('/add-pet')
+    }
+  }
 }
 
 </script>
