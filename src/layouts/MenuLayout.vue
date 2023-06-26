@@ -15,7 +15,8 @@
       <ion-content class="ion-padding">
         <ion-fab slot="fixed" vertical="bottom" horizontal="end">
           <ion-fab-button size="small" color="success" expand="block" @click="setOpen(true)">
-            <ion-icon :icon="help"></ion-icon>
+            <!-- <ion-icon :icon="helpCircle"></ion-icon> -->
+            <span style="font-size: 20px;">?</span>
           </ion-fab-button>
         </ion-fab>
         <ion-modal style="--height:100%;" :isOpen="isOpen">
@@ -82,7 +83,7 @@ import {
   IonLabel,
   IonInput,
 } from "@ionic/vue";
-import { help } from 'ionicons/icons';
+import { helpCircle } from 'ionicons/icons';
 
 export default {
   props: ["pageTitle"],
@@ -177,5 +178,9 @@ ion-select::part(icon) {
 
 ion-select::part(text) {
   flex: 0 0 auto;
+}
+
+ion-icon {
+  color: white !important;
 }
 </style>
