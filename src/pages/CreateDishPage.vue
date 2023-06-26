@@ -87,7 +87,6 @@ export default {
       cereale: null,
       vitamina: null,
       alimentiConsigliati: null,
-      showResult: false
     };
   },
   computed: {
@@ -127,6 +126,11 @@ export default {
       this.$store.commit('SET_PROTEIN', this.proteina)
       this.$store.commit('SET_CEREAL', this.cereale)
       this.$store.commit('SET_VITAMIN', this.vitamina)
+
+      this.proteina = null
+      this.cereale = null
+      this.vitamina = null
+
       this.$router.push('/read-dish')
     }
   },

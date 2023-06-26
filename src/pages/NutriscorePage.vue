@@ -267,7 +267,7 @@ export default {
       isOpenModalIngredients: false,
       isOpenModalCharacteristics: false,
       isOpenModalOverall: false,
-      developerMode: true,
+      developerMode: false,
       scanActive: false,
     };
   },
