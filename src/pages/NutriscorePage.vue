@@ -200,7 +200,7 @@
           <ion-title>Scanning</ion-title>
           <ion-buttons slot="end">
             <ion-button style="color:white !important" @click="closeBarcodeModal">
-              <ion-icon name="close"></ion-icon>
+              <ion-icon :icon="close"></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-toolbar>
@@ -238,6 +238,7 @@ import {
   warningSharp,
   alertCircleSharp,
   ellipseSharp,
+  close
 } from "ionicons/icons";
 import { Api } from "../helpers/api";
 export default {
@@ -263,6 +264,7 @@ export default {
       informationCircle: informationCircle,
       warningSharp: warningSharp,
       alertCircleSharp: alertCircleSharp,
+      close:close,
       ellipseSharp: ellipseSharp,
       isOpenModalIngredients: false,
       isOpenModalCharacteristics: false,
