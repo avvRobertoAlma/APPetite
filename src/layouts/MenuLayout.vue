@@ -14,10 +14,27 @@
       </ion-header>
       <ion-content class="ion-padding">
         <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-          <ion-fab-button color="success" @click="">
+          <ion-fab-button size="small" color="success" expand="block" @click="setOpen(true)">
             <ion-icon :icon="help"></ion-icon>
           </ion-fab-button>
         </ion-fab>
+        <ion-modal style="--height:100%;" :isOpen="isOpen">
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Informazioni sull'app</ion-title>
+              <ion-buttons slot="end">
+                <ion-button @click="setOpen(false)">CHIUDI</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <p>
+              L'app rappresenta un prototipo che non esaurisce le funzionalità pensate per lo sviluppo finale. Maggiori
+              informazioni sono contenute nello studio di fattibilità.
+            </p>
+          </ion-content>
+        </ion-modal>
+
       </ion-content>
     </ion-menu>
     <div class="ion-page" id="main-content">
@@ -51,6 +68,7 @@ import {
   IonContent,
   IonBackButton,
   IonButtons,
+  IonButton,
   IonMenu,
   IonMenuButton,
   IonList,
@@ -59,7 +77,10 @@ import {
   IonSelectOption,
   IonFab,
   IonFabButton,
-  IonIcon
+  IonIcon,
+  IonModal,
+  IonLabel,
+  IonInput,
 } from "@ionic/vue";
 import { help } from 'ionicons/icons';
 
@@ -73,6 +94,7 @@ export default {
     IonContent,
     IonBackButton,
     IonButtons,
+    IonButton,
     IonMenu,
     IonMenuButton,
     IonList,
@@ -81,13 +103,17 @@ export default {
     IonSelectOption,
     IonFab,
     IonFabButton,
-    IonIcon
+    IonIcon,
+    IonModal,
+    IonLabel,
+    IonInput,
   },
   data() {
     return {
       petName: this.$store.getters.getActivePet
         ? this.$store.getters.getActivePet.name
         : null,
+      isOpen: false,
     };
   },
   watch: {
@@ -98,6 +124,11 @@ export default {
   ionViewWillEnter() {
     console.log(this.$refs.menu.isOpen());
   },
+  methods: {
+    setOpen(isOpen) {
+      this.isOpen = isOpen;
+    },
+  }
 };
 </script>
 
