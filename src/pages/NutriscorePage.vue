@@ -30,13 +30,15 @@
         <ion-row>
           <ion-col></ion-col>
           <ion-col>
-
-            <h1 v-if="this.$store.getters.getActivePet.type == rankings.pet" style="font-size: 1.4rem !important;"
-              :class="nutriscoreClass">{{ rankings.points
-              }}/100
-            </h1>
-            <h1 v-else style="font-size: 1.4rem !important;" class="nutriscore-points-red">0/100</h1>
-
+            <div style="text-align: center;">
+              <h1 v-if="this.$store.getters.getActivePet.type == rankings.pet"
+                style="font-size: 1.4rem !important; margin-bottom: 1px;" :class="nutriscoreClass">{{ rankings.points
+                }}/100
+              </h1>
+              <h1 v-else style="font-size: 1.4rem !important; margin-bottom: 1px;" class="nutriscore-points-red">0/100
+              </h1>
+              <h5 style="margin-top: 2px;" :quality="quality">{{ quality }} qualità</h5>
+            </div>
           </ion-col>
           <ion-col></ion-col>
         </ion-row>
@@ -67,6 +69,12 @@
               <ion-list>
                 <ion-item expand="block" v-for="item in rankings.overall">
                   <ion-label>{{ item.description }}</ion-label>
+                  <ion-icon v-if="item.risk == 'alto'" :icon="ellipseSharp" style="color: red;" size="small"
+                    slot="end"></ion-icon>
+                  <ion-icon v-if="item.risk == 'medio'" :icon="ellipseSharp" style="color: orange" size="small"
+                    slot="end"></ion-icon>
+                  <ion-icon v-if="item.risk == 'basso'" :icon="ellipseSharp" style="color: yellow" size="small"
+                    slot="end"></ion-icon>
                   <ion-icon :icon="informationCircle" style="color: #eb8500" @click="setSelectedOverall(item)"
                     slot="end"></ion-icon>
                 </ion-item>
@@ -264,22 +272,26 @@ export default {
       informationCircle: informationCircle,
       warningSharp: warningSharp,
       alertCircleSharp: alertCircleSharp,
-      close:close,
+      close: close,
       ellipseSharp: ellipseSharp,
       isOpenModalIngredients: false,
       isOpenModalCharacteristics: false,
       isOpenModalOverall: false,
-      developerMode: false,
+      developerMode: true,
       scanActive: false,
+      quality: null,
     };
   },
   computed: {
     nutriscoreClass() {
       if (this.rankings.points > 70) {
+        this.quality = "Alta"
         return "nutriscore-points-green";
       } else if (this.rankings.points > 51) {
+        this.quality = "Media"
         return "nutriscore-points-yellow";
       } else {
+        this.quality = "Bassa"
         return "nutriscore-points-red";
       }
     },

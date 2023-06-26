@@ -50,7 +50,7 @@
             </ion-item>
           </ion-item-group>
         </ion-list>
-        <ion-button type="submit" color="success" expand="block">Calcola Dosi Giornaliere Consigliate</ion-button>
+        <ion-button type="submit" color="success" expand="block">Calcola Dosi Giornaliere</ion-button>
       </form>
     </ion-content>
   </default-layout>

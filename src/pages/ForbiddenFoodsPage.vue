@@ -7,16 +7,48 @@
     <ion-content class="ion-padding">
       <ion-list>
         <ion-item-group>
-        <ion-item-divider>
-          <ion-label style="text-align:center"> Alimenti vietati per {{ this.$store.getters.getActivePet.name }} </ion-label>
-        </ion-item-divider>
-        <ion-item expand="block" style="text-transform: capitalize" v-for="food in forbiddenFilteredFoodList"
-          @click="setSelectedForbiddenFood(food)">{{ food.denominazione }}</ion-item>
+          <ion-item-divider>
+            <ion-label style="text-align:center"> Alimenti vietati per {{ this.$store.getters.getActivePet.name }}
+            </ion-label>
+          </ion-item-divider>
+          <ion-item expand="block" style="text-transform: capitalize" v-for="food in forbiddenFilteredFoodList"
+            @click="setSelectedForbiddenFood(food)">{{ food.denominazione }}</ion-item>
         </ion-item-group>
       </ion-list>
       <!-- Display the modal with more information -->
-      <ion-modal :isOpen="isOpenModal" @ionModalDidDismiss="closeModal" :initial-breakpoint="1" :breakpoints="[0, 1]">
-        <div class="block">
+      <ion-modal :isOpen="isOpenModal" style="--height: 100%;">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>
+              <div class="ion-text-capitalize">{{ selectedForbiddenFood.denominazione }}</div>
+            </ion-title>
+            <ion-buttons slot="end">
+              <ion-button @click="closeModal()">Chiudi</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-img :src="selectedForbiddenFood.img"></ion-img>
+        <ion-content class="ion-padding">
+          <ion-list>
+            <ion-item-group>
+              <ion-item-divider>
+                <ion-label>Sintomi:</ion-label>
+              </ion-item-divider>
+              <ion-item v-for="element in selectedForbiddenFood.sintomi" id="general">
+                <ion-label>
+                  <ion-icon :icon="arrow" size="small"></ion-icon> {{ element }}
+                </ion-label>
+              </ion-item>
+            </ion-item-group>
+          </ion-list>
+          <ion-list>
+            <ion-row>
+              <h3>Descrizione:</h3>
+            </ion-row>
+            <p>{{ selectedForbiddenFood.motivazione }}</p>
+          </ion-list>
+        </ion-content>
+        <!-- <div class="block">
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -31,7 +63,7 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-        </div>
+        </div> -->
       </ion-modal>
     </ion-content>
   </default-layout>
@@ -51,16 +83,21 @@ import {
   IonTitle,
   IonItemGroup,
   IonItemDivider,
-  IonLabel
+  IonLabel,
+  IonImg,
+  IonRow,
+  IonIcon,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { Api } from "../helpers/api";
+import { returnDownForwardOutline } from "ionicons/icons"
 export default defineComponent({
   data() {
     return {
       inputChars: "",
       selectedForbiddenFood: null,
       isOpenModal: false,
+      arrow: returnDownForwardOutline,
     };
   },
   computed: {
@@ -110,7 +147,9 @@ export default defineComponent({
     IonTitle,
     IonItemGroup,
     IonItemDivider,
-    IonLabel
+    IonLabel,
+    IonImg,
+    IonRow,
   },
 });
 </script>
@@ -144,9 +183,9 @@ ion-modal {
 ion-item-divider {
   border: 1px solid;
   border-color: #f6a300;
-  color:black;
+  color: black;
   font-weight: bold;
   font-size: 16px;
-  text-align:center;
+  text-align: center;
 }
 </style>
