@@ -13,20 +13,24 @@ export const store = createStore({
       state.pets.push(pet);
       localStorage.setItem("appetite_pets", JSON.stringify(state.pets));
     },
-    EDIT_PET(state, form){
+    EDIT_PET(state, form) {
       const idx = store.state.pets.findIndex(function (el) {
         return el.name == form.oldPetName;
       });
       console.log(idx);
-      store.state.pets[idx] = form.pet
+      store.state.pets[idx] = form.pet;
       localStorage.setItem("appetite_pets", JSON.stringify(state.pets));
+      if (form.oldPetName == state.activePet.name) {
+        console.log("reset active pet");
+        store.commit("SET_ACTIVE_PET", idx);
+      }
     },
     REMOVE_PET(state, pet) {
       const active = state.pets.indexOf(pet);
       state.pets.splice(active, 1);
       localStorage.setItem("appetite_pets", JSON.stringify(state.pets));
-      if (state.pets.length==0){
-        console.log("No pets")
+      if (state.pets.length == 0) {
+        console.log("No pets");
         store.commit("SET_ACTIVE_PET", -1);
       } else if (pet.name == state.activePet.name) {
         console.log("reset active pet");
@@ -40,12 +44,11 @@ export const store = createStore({
       state.activePet = pet[idx];
     },
     SET_ACTIVE_PET(state, petIndex) {
-      if (petIndex == -1){
-        state.activePet = null
+      if (petIndex == -1) {
+        state.activePet = null;
       } else {
         state.activePet = state.pets[petIndex];
       }
-      
     },
     SET_PETS(state, pets) {
       state.pets = pets;
@@ -83,6 +86,6 @@ export const store = createStore({
     },
     getActivePet(state) {
       return state.activePet;
-    }
+    },
   },
 });

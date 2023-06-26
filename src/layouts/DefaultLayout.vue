@@ -6,12 +6,12 @@
           <ion-back-button :default-href="pageDefaultBackLink"></ion-back-button>
         </ion-buttons>
         <ion-title>{{ pageTitle }}</ion-title>
-        
+
         <ion-select v-model="petName" aria-label="Pets" interface="popover" v-if="$store.getters.getPets.length"
           :value="petName" slot="end">
           <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{ pet.name }}</ion-select-option>
         </ion-select>
-        
+
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -55,17 +55,19 @@ export default {
     }
   },
   computed: {
-    storedPet(){
+    storedPet() {
+      console.log("storedPet")
       return this.$store.getters.getActivePet
     }
   },
   watch: {
     petName() {
+      console.log("petName")
       this.$store.dispatch('SET_ACTIVE_PET_BY_NAME', this.petName)
     },
-    storedPet(){
+    storedPet() {
       console.log("Changed, new value is: ")
-      if (this.$store.getters.getActivePet){
+      if (this.$store.getters.getActivePet) {
         this.petName = this.$store.getters.getActivePet.name
       }
       this.$forceUpdate();

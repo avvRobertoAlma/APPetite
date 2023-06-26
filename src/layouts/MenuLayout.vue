@@ -83,7 +83,6 @@ import {
   IonLabel,
   IonInput,
 } from "@ionic/vue";
-import { helpCircle } from 'ionicons/icons';
 
 export default {
   props: ["pageTitle"],
