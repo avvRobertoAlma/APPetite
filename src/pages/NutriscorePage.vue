@@ -29,11 +29,14 @@
         </ion-row>
         <ion-row>
           <ion-col></ion-col>
-          <ion-col style="width: 50%">
-            <h1 v-if="this.$store.getters.getActivePet.type == rankings.pet" :class="nutriscoreClass">{{ rankings.points
-            }}/100
+          <ion-col>
+
+            <h1 v-if="this.$store.getters.getActivePet.type == rankings.pet" style="font-size: 1.4rem !important;"
+              :class="nutriscoreClass">{{ rankings.points
+              }}/100
             </h1>
-            <h1 v-else class="nutriscore-points-red">0/100</h1>
+            <h1 v-else style="font-size: 1.4rem !important;" class="nutriscore-points-red">0/100</h1>
+
           </ion-col>
           <ion-col></ion-col>
         </ion-row>
@@ -55,8 +58,8 @@
             <ion-col>
               <ion-note>Ingredienti</ion-note>
             </ion-col>
-            <ion-col push="3">
-              <a @click="viewIngredients">Vedi ingredienti</a>
+            <ion-col size="auto">
+              <a @click="viewIngredients">Dettaglio</a>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -264,7 +267,7 @@ export default {
       isOpenModalIngredients: false,
       isOpenModalCharacteristics: false,
       isOpenModalOverall: false,
-      developerMode: false,
+      developerMode: true,
       scanActive: false,
     };
   },
