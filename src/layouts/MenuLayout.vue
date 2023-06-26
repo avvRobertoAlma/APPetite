@@ -6,20 +6,19 @@
           <ion-title>Menu</ion-title>
         </ion-toolbar>
         <ion-list>
-          <ion-item router-link="/nutriscore" style="cursor: pointer"
-            >Scanner qualità</ion-item
-          >
-          <ion-item router-link="/create-dish" style="cursor: pointer"
-            >Dosa il cibo</ion-item
-          >
-          <ion-item router-link="/forbidden-foods" style="cursor: pointer"
-            >Cibi vietati</ion-item
-          >
-          <ion-item router-link="/pets/list" style="cursor: pointer"
-            >I miei pets</ion-item
-          >
+          <ion-item router-link="/nutriscore" style="cursor: pointer">Scanner qualità</ion-item>
+          <ion-item router-link="/create-dish" style="cursor: pointer">Dosa il cibo</ion-item>
+          <ion-item router-link="/forbidden-foods" style="cursor: pointer">Cibi vietati</ion-item>
+          <ion-item router-link="/pets/list" style="cursor: pointer">I miei pets</ion-item>
         </ion-list>
       </ion-header>
+      <ion-content class="ion-padding">
+        <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+          <ion-fab-button color="success" @click="">
+            <ion-icon :icon="help"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </ion-content>
     </ion-menu>
     <div class="ion-page" id="main-content">
       <ion-header>
@@ -28,15 +27,8 @@
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
           <ion-title>{{ pageTitle }}</ion-title>
-          <ion-select v-if="$store.getters.getPets.length"
-            v-model="petName"
-            aria-label="Pets"
-            interface="popover"
-            :value="
-              $store.getters.getActivePet ? $store.getters.getActivePet.name : undefined
-            "
-            slot="end"
-          >
+          <ion-select v-if="$store.getters.getPets.length" v-model="petName" aria-label="Pets" interface="popover" :value="$store.getters.getActivePet ? $store.getters.getActivePet.name : undefined
+            " slot="end">
             <ion-select-option :value="pet.name" v-for="pet in $store.getters.getPets">{{
               pet.name
             }}</ion-select-option>
@@ -65,7 +57,11 @@ import {
   IonItem,
   IonSelect,
   IonSelectOption,
+  IonFab,
+  IonFabButton,
+  IonIcon
 } from "@ionic/vue";
+import { help } from 'ionicons/icons';
 
 export default {
   props: ["pageTitle"],
@@ -83,6 +79,9 @@ export default {
     IonItem,
     IonSelect,
     IonSelectOption,
+    IonFab,
+    IonFabButton,
+    IonIcon
   },
   data() {
     return {

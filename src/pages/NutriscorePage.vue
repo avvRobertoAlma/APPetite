@@ -11,7 +11,8 @@
         <h3 style="margin-top: 10% !important; text-align: center !important">
           Scansiona il codice a barre del prodotto per valutarlo
         </h3>
-        <ion-button style="margin-top: 80px !important" color="success" expand="full" @click="startScan" v-if="!scanActive">
+        <ion-button style="margin-top: 80px !important" color="success" expand="full" @click="startScan"
+          v-if="!scanActive">
           SCAN
         </ion-button>
       </ion-content>
@@ -73,8 +74,7 @@
         <!-- Product doesn't match with animal -->
         <div v-else>
           <ion-row class="ion-justify-content-center">
-            <span id="wrong-product">Il prodotto non è indicato per questa specie
-              animale</span>
+            <span id="wrong-product">Il prodotto non è indicato per {{ this.$store.getters.getActivePet.name }}</span>
           </ion-row>
         </div>
       </ion-grid>
@@ -196,7 +196,7 @@
         <ion-toolbar>
           <ion-title>Scanning</ion-title>
           <ion-buttons slot="end">
-            <ion-button @click="closeBarcodeModal">
+            <ion-button style="color:white !important" @click="closeBarcodeModal">
               <ion-icon name="close"></ion-icon>
             </ion-button>
           </ion-buttons>
@@ -326,24 +326,24 @@ export default {
       }
     },
     async startScan() {
-      alert("start scan")
+      // alert("start scan")
       const allowed = await this.checkPermission();
       if (allowed) {
-        alert("allowed");
+        // alert("allowed");
         this.scanActive = true
         BarcodeScanner.hideBackground();
         document.querySelector('body').classList.add('barcode-scanning-active');
         const result = await BarcodeScanner.startScan();
         if (result.hasContent) {
           this.scanActive = false
-          alert(result.content);
+          // alert(result.content);
           await this.stopScan();
           this.loadNutriscoreRanking()
 
         } else {
           await this.stopScan();
         }
-        
+
       } else {
         alert("not allowed")
       }
