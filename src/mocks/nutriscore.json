@@ -43,33 +43,29 @@
             },
             {
                 "name": "Ingredienti qualitativamente scarsi",
-                "description": "n.3 qualitativamente scarsi",
+                "description": "n.1 qualitativamente scarsi",
                 "risk": "basso",
                 "details": "La presenza di queste sostanze potrebbe non essere la scelta migliore per il tuo animale",
-                "ingredients": "Farina di alghe - Aglio essiccato",
+                "ingredients": "Amido di mais",
                 "symptoms": []
             }
         ],
         "ingredients": [
             {
                 "description": "Oli e grassi",
-                "risk": "medium"
+                "risk": "high"
             },
             {
                 "description": "Acqua",
                 "risk": null
             },
             {
-                "description": "Carne di Tacchino",
+                "description": "Carne di Salmone",
                 "risk": null
             },
             {
                 "description": "Amido di Mais",
                 "risk": "medium"
-            },
-            {
-                "description": "Sale",
-                "risk": "high"
             },
             {
                 "description": "Farina di Soia",
@@ -78,6 +74,10 @@
             {
                 "description": "Spezzatura riso",
                 "risk": null
+            },
+            {
+                "description": "Noce di cocco",
+                "risk": "high"
             }
         ]
     },
