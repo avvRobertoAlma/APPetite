@@ -27,8 +27,10 @@
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-img :src="selectedForbiddenFood.img"></ion-img>
+
         <ion-content class="ion-padding">
+          <ion-img style="margin-bottom:10px; border: 1px solid; border-color: #f6a300;"
+            :src="selectedForbiddenFood.img"></ion-img>
           <ion-list>
             <ion-item-group>
               <ion-item-divider>

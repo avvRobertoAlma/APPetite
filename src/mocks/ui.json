@@ -19,45 +19,67 @@
         "alimentiVietati": [
             {
                 "denominazione": "avocado",
-                "sintomi": ["Disturbi digestivi"],
+                "sintomi": [
+                    "Disturbi digestivi"
+                ],
                 "motivazione": "Contiene una tossina (persina) in grado di provocare disturbi digestivi al cane.",
-                "img": null
+                "img": "/avocado_1080.jpg"
             },
             {
                 "denominazione": "cioccolato",
-                "sintomi": ["Polidpsia", "Tachicardia"],
+                "sintomi": [
+                    "Polidpsia",
+                    "Tachicardia"
+                ],
                 "motivazione": "La teobromina può provocare tremori, sete eccessiva, battito cardiaco irregolare e, nei casi più estremi, portare alla morte.",
-                "img": null
+                "img": "cioccolato_1080.jpg"
             },
             {
                 "denominazione": "cipolla",
-                "sintomi": ["Danneggiamento globuli rossi"],
+                "sintomi": [
+                    "Danneggiamento globuli rossi"
+                ],
                 "motivazione": "Un sovradosaggio può danneggiare i globuli rossi del tuo cane.",
-                "img": null
+                "img": "cipolla_1080.jpg"
             },
             {
                 "denominazione": "noci di macadamia",
-                "sintomi": ["Tremori", "Debolezza", "Febbre"],
+                "sintomi": [
+                    "Tremori",
+                    "Debolezza",
+                    "Febbre"
+                ],
                 "motivazione": "Contengono una tossina non ancora ben identificata che nel cane può provocare tremori, debolezza e innalzamento della temperatura sino, addirittura, alla paralisi.",
-                "img": null
+                "img": "noci_1080.jpg"
             },
             {
                 "denominazione": "sale",
-                "sintomi": ["Polidpsia", "Pressione alta", "Insufficienza renale"],
+                "sintomi": [
+                    "Polidpsia",
+                    "Pressione alta",
+                    "Insufficienza renale"
+                ],
                 "motivazione": "L’eccessivo apporto di sale nella dieta del cane può provocare polidpsia (sete eccessiva), pressione alta e aumentare l’insorgenza di patologie renali.",
-                "img": null
+                "img": "sale_1080.jpg"
             },
             {
                 "denominazione": "uva/uvetta",
-                "sintomi": ["Letargia", "Depressione", "Vomito"],
+                "sintomi": [
+                    "Letargia",
+                    "Depressione",
+                    "Vomito"
+                ],
                 "motivazione": "Potrebbero causare letargia, depressione, vomito e iperattività. Inoltre sono stati descritti casi gravi di insufficienza renale in cani dopo l'ingestione di grandi quantità di uva fresca o uvetta, di cui non si conosce esattamente il meccanismo di tossicità.",
-                "img": null
+                "img": "uva_1080.jpg"
             },
             {
                 "denominazione": "zucchero",
-                "sintomi": ["Diabete", "Carie"],
+                "sintomi": [
+                    "Diabete",
+                    "Carie"
+                ],
                 "motivazione": "Può causare problemi ai denti o diabete e un conseguente aumento di peso.",
-                "img": null
+                "img": "zucchero_1080.jpg"
             }
         ]
     },
@@ -77,47 +99,66 @@
         "alimentiVietati": [
             {
                 "denominazione": "avocado",
-                "sintomi": ["Vomito", "Diarrea"],
+                "sintomi": [
+                    "Vomito",
+                    "Diarrea"
+                ],
                 "motivazione": "Le foglie, i semi e lo stesso frutto dell’avocado contengono persina, una sostanza che può causare vomito o diarrea.",
-                "img": null
+                "img": "/avocado_1080.jpg"
             },
             {
                 "denominazione": "buccia di patata",
-                "sintomi": ["Gastroenterite", "Danni al sistema nervoso"],
+                "sintomi": [
+                    "Gastroenterite",
+                    "Danni al sistema nervoso"
+                ],
                 "motivazione": "La presenza di solanina può causare disturbi a livello gastrointestinale o, in casi più gravi, danni al sistema nervoso.",
-                "img": null
+                "img": "/buccia_patata_1080.jpg"
             },
             {
                 "denominazione": "caffè",
-                "sintomi": ["Tachicardia", "Affanno"],
+                "sintomi": [
+                    "Tachicardia",
+                    "Affanno"
+                ],
                 "motivazione": "Può provocare reazioni gravi a carico del cuore e del sistema respiratorio come palpitazioni, tachicardia, respiro corto e tremori muscolari.",
-                "img": null
+                "img": "/coffee_1080.jpg"
             },
             {
                 "denominazione": "cioccolato",
-                "sintomi": ["Tachicardia", "Affanno"],
+                "sintomi": [
+                    "Tachicardia",
+                    "Affanno"
+                ],
                 "motivazione": "All’interno è presente la teobromina, una molecola simile alla caffeina che può risultare tossica per i gatti.",
-                "img": null
+                "img": "/cioccolato_1080.jpg"
             },
             {
                 "denominazione": "cipolla",
-                "sintomi": ["Anemia"],
+                "sintomi": [
+                    "Anemia"
+                ],
                 "motivazione": "La presenza di tiosolfato influisce negativamente sulla produzione di globuli rossi e può causare gravi situazioni di anemia.",
-                "img": null
+                "img": "/cipolla_1080.jpg"
             },
             {
                 "denominazione": "pomodoro",
-                "sintomi": ["Gastroenterite", "Danni al sistema nervoso"],
+                "sintomi": [
+                    "Gastroenterite",
+                    "Danni al sistema nervoso"
+                ],
                 "motivazione": "La presenza di solanina può causare disturbi a livello gastrointestinale o, in casi più gravi, danni al sistema nervoso.",
-                "img": null
+                "img": "/pomodoro_1080.jpg"
             },
             {
                 "denominazione": "tè",
-                "sintomi": ["Tachicardia", "Affanno"],
+                "sintomi": [
+                    "Tachicardia",
+                    "Affanno"
+                ],
                 "motivazione": "Può provocare reazioni gravi a carico del cuore e del sistema respiratorio come palpitazioni, tachicardia, respiro corto e tremori muscolari.",
-                "img": null
+                "img": "/tè_1080.jpg"
             }
-            
         ]
     },
     {
@@ -133,27 +174,37 @@
         "alimentiVietati": [
             {
                 "denominazione": "cetriolo",
-                "sintomi": ["Obesità", "Danni al fegato"],
+                "sintomi": [
+                    "Obesità",
+                    "Danni al fegato"
+                ],
                 "motivazione": "Può causare obesità, carenze nutrizionali e anche malattie del fegato.",
-                "img": null
+                "img": "/cetriolo_1080.jpg"
             },
             {
                 "denominazione": "funghi",
-                "sintomi": ["Indigestione"],
+                "sintomi": [
+                    "Indigestione"
+                ],
                 "motivazione": "Difficoltà di digestione.",
-                "img": null
+                "img": "funghi_1080.jpg"
             },
             {
                 "denominazione": "peperone",
-                "sintomi": ["Obesità", "Danni al fegato"],
+                "sintomi": [
+                    "Obesità",
+                    "Danni al fegato"
+                ],
                 "motivazione": "Può causare obesità, carenze nutrizionali e anche malattie del fegato.",
-                "img": null
+                "img": "peperone_1080.jpg"
             },
             {
                 "denominazione": "zucchero",
-                "sintomi": ["Intossicazione"],
+                "sintomi": [
+                    "Intossicazione"
+                ],
                 "motivazione": "L'ingestione di una grande quantità rischia di distruggere i batteri presenti nello stomaco delle tartarughe, in grado di digerirne quantità ridotte. L'ingestione di una grande quantità rischia di distruggerli, con conseguente intossicazione e, di conseguenza, morte.",
-                "img": null
+                "img": "/zucchero_1080.jpg"
             }
         ]
     }
