@@ -65,11 +65,11 @@ import {
   IonSelectOption,
   IonText,
   IonItemDivider,
-  IonItemGroup
+  IonItemGroup,
+  IonButton,
 } from "@ionic/vue";
 
 import { Api } from "../helpers/api";
-// import { Services } from "../helpers/services"
 export default {
   components: {
     IonContent,
@@ -79,7 +79,8 @@ export default {
     IonSelectOption,
     IonText,
     IonItemDivider,
-    IonItemGroup
+    IonItemGroup,
+    IonButton,
   },
   data() {
     return {
