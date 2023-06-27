@@ -1,5 +1,5 @@
 <template>
-  <default-layout pageTitle="Scanner qualità" pageDefaultBackLink="/home">
+  <default-layout pageTitle="Scanner qualità" pageDefaultBackLink="/home" :callbackFunction="newSearch" :showAlternativeButton="isRankingOpen">
     <div v-if="isScannerOpen">
       <ion-content class="ion-padding" style="position: absolute" v-if="developerMode">
         <h3 style="margin-top: 10% !important; text-align: center !important">
@@ -235,6 +235,7 @@ import {
   IonIcon,
   IonModal,
   IonNote,
+  isPlatform
 } from "@ionic/vue";
 
 import {
@@ -277,7 +278,6 @@ export default {
       isOpenModalIngredients: false,
       isOpenModalCharacteristics: false,
       isOpenModalOverall: false,
-      developerMode: true,
       scanActive: false,
       quality: null,
     };
@@ -295,6 +295,20 @@ export default {
         return "nutriscore-points-red";
       }
     },
+    /*
+      trasformato developerMode in una computed
+      isPlatform è un metodo di ionic che restituisce true/false a seconda del tipo di device che
+      sta eseguendo l'applicazione
+      nel caso nostro se siamo su android o ios restituisce true e quindi developerMode deve essere false
+      altrimenti developerMode deve essere true' 
+    */
+    developerMode(){
+      if (isPlatform('android')| isPlatform('ios')){
+        return false
+      } else {
+        return true
+      }
+    }
   },
   methods: {
     async loadNutriscoreRanking() {
@@ -341,6 +355,10 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+    newSearch(){
+      this.isRankingOpen = false
+      this.isScannerOpen = true
     },
     async startScan() {
       // alert("start scan")

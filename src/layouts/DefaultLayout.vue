@@ -3,7 +3,10 @@
     <ion-header>
       <ion-toolbar :key="$route.fullPath">
         <ion-buttons slot="start">
-          <ion-back-button :default-href="pageDefaultBackLink"></ion-back-button>
+          <ion-back-button :default-href="pageDefaultBackLink" v-if="!showAlternativeButton"></ion-back-button>
+          <ion-button v-else @click="callbackFunction">
+            <ion-icon slot="icon-only" :icon="arrowBack"></ion-icon>
+          </ion-button> 
         </ion-buttons>
         <ion-title>{{ pageTitle }}</ion-title>
 
@@ -30,14 +33,26 @@ import {
   IonBackButton,
   IonButtons,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
+  IonButton
 } from "@ionic/vue";
 import { ref } from "vue";
+
+import {
+  arrowBack,
+} from "ionicons/icons";
 
 const componentKey = ref(0);
 
 export default {
-  props: ["pageTitle", "pageDefaultBackLink"],
+  /*
+    ho aggiunto due props al DefaultLayout: (i) showAlternativeButton e (ii) callbackFunction
+    fondamentalmente se showAlternativeButton è inizializzata a true verrà mostrato un bottone alternativo
+    che avrà lo stesso aspetto e look & feel dello IonBackButton ma eseguirà una azione personalizzata
+    ossia quella contenuta nella "callbackFunction"
+    in NutriscorePage c'è un esempio di invocazione
+*/ 
+  props: ["pageTitle", "pageDefaultBackLink", "showAlternativeButton", "callbackFunction"],
   components: {
     IonPage,
     IonHeader,
@@ -47,11 +62,13 @@ export default {
     IonBackButton,
     IonButtons,
     IonSelect,
-    IonSelectOption
+    IonSelectOption,
+    IonButton
   },
   data() {
     return {
       petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null,
+      arrowBack:arrowBack
     }
   },
   computed: {
