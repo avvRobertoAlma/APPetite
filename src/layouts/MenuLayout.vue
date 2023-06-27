@@ -7,14 +7,14 @@
         </ion-toolbar>
         <ion-list>
           <ion-item lines="full" router-link="/nutriscore" style="cursor: pointer">
-            <ion-icon :icon="scanCircleOutline" style="color:black" slot="start"></ion-icon><ion-label>Scanner
+            <ion-icon src="../../scan-barcode.svg" slot="start"></ion-icon><ion-label>Scanner
               qualità</ion-label></ion-item>
-          <ion-item lines="full" router-link="/create-dish" style="cursor: pointer"><ion-icon
-              src="../../public/dose-dish.svg" slot="start"></ion-icon><ion-label>Dosa il cibo</ion-label></ion-item>
+          <ion-item lines="full" router-link="/create-dish" style="cursor: pointer"><ion-icon src="../../dose-dish.svg"
+              slot="start"></ion-icon><ion-label>Dosa il cibo</ion-label></ion-item>
           <ion-item lines="full" router-link="/forbidden-foods" style="cursor: pointer">
-            <ion-icon src="../../public/pizza-not-outline.svg" slot="start"></ion-icon><ion-label>Cibi
+            <ion-icon src="../../pizza-not-outline.svg" slot="start"></ion-icon><ion-label>Cibi
               vietati</ion-label></ion-item>
-          <ion-item lines="full" router-link="/pets/list" style="cursor: pointer"><ion-icon src="../../public/cil-dog.svg"
+          <ion-item lines="full" router-link="/pets/list" style="cursor: pointer"><ion-icon src="../../cil-dog.svg"
               slot="start"></ion-icon><ion-label>I miei
               pets</ion-label></ion-item>
         </ion-list>
