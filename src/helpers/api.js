@@ -29,15 +29,32 @@ export const Api = {
     });
     return pet.razze;
   },
-  getNutriscoreRanking(barcode) {
+  getNutriscoreRanking(barcode, petType) {
+    console.log("[API] Nutriscore per " +petType + " " + barcode)
     const product = nutriscoreRankings.find(function (el) {
       return el.barcode == barcode;
     });
-    console.log(product);
     if (!product) {
       return null;
     }
-    return product;
+    /* 
+      il metodo Array.find restituisce un riferimento all'elemento corrente dell'array nel caso in cui sia un oggetto
+      per cui per poter modificare a runtime il valore del punteggio se la combinazione è scorretta
+      devo creare un nuovo oggetto che contenga gli stessi valori dell'oggetto restituito da find
+      con la destrutturazione ossia i 3 puntini
+      obj = { ...product } significa crea un oggetto dove tutte le proprietà sono le stesse di product con gli stessi valori
+      ma è una copia non l'oggetto iniziale
+      a questo punto posso modificare il punteggio e settarlo a zero se la combinazione animale barcode non è corretta
+    */
+    if (product.pet == petType){
+      console.log('[API] prodotto ok')
+      return { ...product }
+    } else {
+      console.log(`[API] Nutriscore animale corrente ${petType} animale desiderato ${product.pet}`)
+      const prod = { ...product }
+      prod.points = 0
+      return prod
+    }
   },
   getFoodChoicesPerRace(petRace){
     console.log(petRace)

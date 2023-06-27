@@ -17,7 +17,7 @@
         </ion-button>
       </ion-content>
     </div>
-    <div v-if="isRankingOpen">
+    <div v-if="isRankingOpen && !loading">
       <ion-grid>
         <ion-row class="ion-align-items-center">
           <ion-col>
@@ -31,13 +31,11 @@
           <ion-col></ion-col>
           <ion-col>
             <div style="text-align: center;">
-              <h1 v-if="this.$store.getters.getActivePet.type == rankings.pet"
+              <h1
                 style="font-size: 1.4rem !important; margin-bottom: 1px;" :class="nutriscoreClass">{{ rankings.points
                 }}/100
               </h1>
-              <h1 v-else style="font-size: 1.4rem !important; margin-bottom: 1px;" class="nutriscore-points-red">0/100
-              </h1>
-              <h5 style="margin-top: 2px;" :quality="quality">{{ quality }} qualità</h5>
+              <h5 style="margin-top: 2px;">{{ quality }} qualità</h5>
             </div>
           </ion-col>
           <ion-col></ion-col>
@@ -279,20 +277,29 @@ export default {
       isOpenModalCharacteristics: false,
       isOpenModalOverall: false,
       scanActive: false,
-      quality: null,
+      barcode: null,
+      loading: false,
+      points: 0
     };
   },
   computed: {
     nutriscoreClass() {
-      if (this.rankings.points > 70) {
-        this.quality = "Alta"
+      if (this.points > 70) {
         return "nutriscore-points-green";
-      } else if (this.rankings.points > 51) {
-        this.quality = "Media"
+      } else if (this.points > 51) {
         return "nutriscore-points-yellow";
       } else {
-        this.quality = "Bassa"
         return "nutriscore-points-red";
+      }
+    },
+    quality(){
+      console.log('cambiato pet')
+      if (this.points > 70) {
+        return "Alta"
+      } else if (this.points > 51){
+        return "Media"
+      } else {
+        return "Bassa"
       }
     },
     /*
@@ -308,17 +315,38 @@ export default {
       } else {
         return true
       }
+    },
+    activePet(){
+      return this.$store.getters.getActivePet
+    },
+    
+  },
+  watch:{
+    async activePet(){
+      /* solo se i risultati sono visualizzati */
+      if (this.isRankingOpen)
+      this.loading = true
+      this.rankings = await Api.getNutriscoreRanking(this.barcode, this.activePet.type);
+      console.log(this.rankings)
+      this.points = this.rankings.points
+      console.log(this.points, this.rankings.points)
+      this.$forceUpdate()
+      this.loading = false
     }
   },
   methods: {
     async loadNutriscoreRanking() {
-      var barcode;
-      if (this.$store.getters.getActivePet.type == "cane") { barcode = 'sample-dog' }
-      else if (this.$store.getters.getActivePet.type == "gatto") { barcode = 'sample-cat' }
-      else if (this.$store.getters.getActivePet.type == "tartaruga") { barcode = 'sample-turtle' }
-      this.rankings = await Api.getNutriscoreRanking(barcode);
+      this.loading = true
+      if (this.$store.getters.getActivePet.type == "cane") { this.barcode = 'sample-dog' }
+      else if (this.$store.getters.getActivePet.type == "gatto") { this.barcode = 'sample-cat' }
+      else if (this.$store.getters.getActivePet.type == "tartaruga") { this.barcode = 'sample-turtle' } 
+    
+      this.rankings = await Api.getNutriscoreRanking(this.barcode, this.activePet.type);
+      console.log(this.rankings)
+      this.points = this.rankings.points
       this.isScannerOpen = false;
       this.isRankingOpen = true;
+      this.loading = false
     },
     viewIngredients() {
       this.isOpenModalIngredients = true;
