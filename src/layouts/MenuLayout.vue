@@ -6,10 +6,17 @@
           <ion-title>Menu</ion-title>
         </ion-toolbar>
         <ion-list>
-          <ion-item router-link="/nutriscore" style="cursor: pointer">Scanner qualità</ion-item>
-          <ion-item router-link="/create-dish" style="cursor: pointer">Dosa il cibo</ion-item>
-          <ion-item router-link="/forbidden-foods" style="cursor: pointer">Cibi vietati</ion-item>
-          <ion-item router-link="/pets/list" style="cursor: pointer">I miei pets</ion-item>
+          <ion-item lines="full" router-link="/nutriscore" style="cursor: pointer">
+            <ion-icon :icon="scanCircleOutline" style="color:black" slot="start"></ion-icon><ion-label>Scanner
+              qualità</ion-label></ion-item>
+          <ion-item lines="full" router-link="/create-dish" style="cursor: pointer"><ion-icon
+              src="../../public/dose-dish.svg" slot="start"></ion-icon><ion-label>Dosa il cibo</ion-label></ion-item>
+          <ion-item lines="full" router-link="/forbidden-foods" style="cursor: pointer">
+            <ion-icon src="../../public/pizza-not-outline.svg" slot="start"></ion-icon><ion-label>Cibi
+              vietati</ion-label></ion-item>
+          <ion-item lines="full" router-link="/pets/list" style="cursor: pointer"><ion-icon src="../../public/cil-dog.svg"
+              slot="start"></ion-icon><ion-label>I miei
+              pets</ion-label></ion-item>
         </ion-list>
       </ion-header>
       <ion-content class="ion-padding">
@@ -83,6 +90,7 @@ import {
   IonLabel,
   IonInput,
 } from "@ionic/vue";
+import { scanCircleOutline } from "ionicons/icons"
 
 export default {
   props: ["pageTitle"],
@@ -114,6 +122,7 @@ export default {
         ? this.$store.getters.getActivePet.name
         : null,
       isOpen: false,
+      scanCircleOutline: scanCircleOutline,
     };
   },
   watch: {
