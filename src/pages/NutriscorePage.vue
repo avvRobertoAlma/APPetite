@@ -236,7 +236,8 @@ import {
   IonModal,
   IonNote,
   IonChip,
-  isPlatform
+  isPlatform,
+  useBackButton
 } from "@ionic/vue";
 
 import {
