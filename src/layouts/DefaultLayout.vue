@@ -6,7 +6,7 @@
           <ion-back-button :default-href="pageDefaultBackLink" v-if="!showAlternativeButton"></ion-back-button>
           <ion-button v-else @click="callbackFunction">
             <ion-icon slot="icon-only" :icon="arrowBack"></ion-icon>
-          </ion-button> 
+          </ion-button>
         </ion-buttons>
         <ion-title>{{ pageTitle }}</ion-title>
 
@@ -34,7 +34,7 @@ import {
   IonButtons,
   IonSelect,
   IonSelectOption,
-  IonButton
+  IonButton,
 } from "@ionic/vue";
 import { ref } from "vue";
 
@@ -51,7 +51,7 @@ export default {
     che avrà lo stesso aspetto e look & feel dello IonBackButton ma eseguirà una azione personalizzata
     ossia quella contenuta nella "callbackFunction"
     in NutriscorePage c'è un esempio di invocazione
-*/ 
+*/
   props: ["pageTitle", "pageDefaultBackLink", "showAlternativeButton", "callbackFunction"],
   components: {
     IonPage,
@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       petName: this.$store.getters.getActivePet ? this.$store.getters.getActivePet.name : null,
-      arrowBack:arrowBack
+      arrowBack: arrowBack
     }
   },
   computed: {

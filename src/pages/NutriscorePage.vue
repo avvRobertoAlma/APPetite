@@ -1,5 +1,6 @@
 <template>
-  <default-layout pageTitle="Scanner qualità" pageDefaultBackLink="/home" :callbackFunction="newSearch" :showAlternativeButton="isRankingOpen">
+  <default-layout pageTitle="Scanner qualità" pageDefaultBackLink="/home" :callbackFunction="newSearch"
+    :showAlternativeButton="isRankingOpen">
     <div v-if="isScannerOpen">
       <ion-content class="ion-padding" style="position: absolute" v-if="developerMode">
         <h3 style="margin-top: 10% !important; text-align: center !important">
@@ -31,9 +32,8 @@
           <ion-col></ion-col>
           <ion-col>
             <div style="text-align: center;">
-              <h1
-                style="font-size: 1.4rem !important; margin-bottom: 1px;" :class="nutriscoreClass">{{ rankings.points
-                }}/100
+              <h1 style="font-size: 1.4rem !important; margin-bottom: 1px;" :class="nutriscoreClass">{{ rankings.points
+              }}/100
               </h1>
               <h5 style="margin-top: 2px;">{{ quality }} qualità</h5>
             </div>
@@ -41,31 +41,34 @@
           <ion-col></ion-col>
         </ion-row>
         <!-- Product matches with animal -->
-        <div v-if="this.$store.getters.getActivePet.type == rankings.pet">
+        <div v-if="this.$store.getters.getActivePet.type == rankings.pet" id="div-list">
           <ion-note>Elementi positivi</ion-note>
           <ion-row>
             <ion-col>
               <ion-list>
-                <ion-item expand="block" v-for="positive in rankings.positives">
+                <ion-item button detail="true" expand="block" @click="setSelectedPositive(positive)"
+                  v-for="positive in rankings.positives">
                   <ion-label>{{ positive.name }}</ion-label>
-                  <ion-icon :icon="informationCircle" style="color: #eb8500" @click="setSelectedPositive(positive)"
-                    slot="end"></ion-icon>
+                  <ion-icon :icon="informationCircle" style="color: #eb8500" slot="end"></ion-icon>
                 </ion-item>
               </ion-list>
             </ion-col>
           </ion-row>
-          <ion-row>
+          <ion-row class="ion-align-items-center">
             <ion-col>
               <ion-note>Ingredienti</ion-note>
             </ion-col>
             <ion-col size="auto">
-              <a @click="viewIngredients">Dettaglio</a>
+
+              <ion-chip @click="viewIngredients" size="small"><ion-icon :icon="listCircleOutline"
+                  style="color:white"></ion-icon><ion-label>Dettaglio</ion-label></ion-chip>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
               <ion-list>
-                <ion-item expand="block" v-for="item in rankings.overall">
+                <ion-item button detail="true" expand="block" @click="setSelectedOverall(item)"
+                  v-for="item in rankings.overall">
                   <ion-label>{{ item.description }}</ion-label>
                   <ion-icon v-if="item.risk == 'alto'" :icon="ellipseSharp" style="color: red;" size="small"
                     slot="end"></ion-icon>
@@ -73,8 +76,7 @@
                     slot="end"></ion-icon>
                   <ion-icon v-if="item.risk == 'basso'" :icon="ellipseSharp" style="color: yellow" size="small"
                     slot="end"></ion-icon>
-                  <ion-icon :icon="informationCircle" style="color: #eb8500" @click="setSelectedOverall(item)"
-                    slot="end"></ion-icon>
+                  <ion-icon :icon="informationCircle" style="color: #eb8500" slot="end"></ion-icon>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -233,7 +235,9 @@ import {
   IonIcon,
   IonModal,
   IonNote,
-  isPlatform
+  IonChip,
+  isPlatform,
+  useBackButton
 } from "@ionic/vue";
 
 import {
@@ -245,7 +249,8 @@ import {
   warningSharp,
   alertCircleSharp,
   ellipseSharp,
-  close
+  close,
+  listCircleOutline
 } from "ionicons/icons";
 import { Api } from "../helpers/api";
 export default {
@@ -260,6 +265,7 @@ export default {
     IonIcon,
     IonNote,
     IonModal,
+    IonChip,
   },
   data() {
     return {
@@ -273,6 +279,7 @@ export default {
       alertCircleSharp: alertCircleSharp,
       close: close,
       ellipseSharp: ellipseSharp,
+      listCircleOutline: listCircleOutline,
       isOpenModalIngredients: false,
       isOpenModalCharacteristics: false,
       isOpenModalOverall: false,
@@ -292,11 +299,11 @@ export default {
         return "nutriscore-points-red";
       }
     },
-    quality(){
+    quality() {
       console.log('cambiato pet')
       if (this.points > 70) {
         return "Alta"
-      } else if (this.points > 51){
+      } else if (this.points > 51) {
         return "Media"
       } else {
         return "Bassa"
@@ -309,23 +316,23 @@ export default {
       nel caso nostro se siamo su android o ios restituisce true e quindi developerMode deve essere false
       altrimenti developerMode deve essere true' 
     */
-    developerMode(){
-      if (isPlatform('android')| isPlatform('ios')){
+    developerMode() {
+      if (isPlatform('android') | isPlatform('ios')) {
         return false
       } else {
         return true
       }
     },
-    activePet(){
+    activePet() {
       return this.$store.getters.getActivePet
     },
-    
+
   },
-  watch:{
-    async activePet(){
+  watch: {
+    async activePet() {
       /* solo se i risultati sono visualizzati */
       if (this.isRankingOpen)
-      this.loading = true
+        this.loading = true
       this.rankings = await Api.getNutriscoreRanking(this.barcode, this.activePet.type);
       console.log(this.rankings)
       this.points = this.rankings.points
@@ -339,8 +346,8 @@ export default {
       this.loading = true
       if (this.$store.getters.getActivePet.type == "cane") { this.barcode = 'sample-dog' }
       else if (this.$store.getters.getActivePet.type == "gatto") { this.barcode = 'sample-cat' }
-      else if (this.$store.getters.getActivePet.type == "tartaruga") { this.barcode = 'sample-turtle' } 
-    
+      else if (this.$store.getters.getActivePet.type == "tartaruga") { this.barcode = 'sample-turtle' }
+
       this.rankings = await Api.getNutriscoreRanking(this.barcode, this.activePet.type);
       console.log(this.rankings)
       this.points = this.rankings.points
@@ -384,7 +391,7 @@ export default {
         console.log(err);
       }
     },
-    newSearch(){
+    newSearch() {
       this.isRankingOpen = false
       this.isScannerOpen = true
     },
@@ -466,6 +473,19 @@ ion-item {
   color: rgb(22, 22, 22) !important;
   --ion-background-color: white !important;
   --border-color: #f6a300 !important;
+}
+
+ion-chip {
+  border-color: #f6a300;
+  --background: #f6a300;
+  --color: white;
+}
+
+ion-note {
+  padding-left: 10px;
+  font-size: 18px;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 #overall {
@@ -560,5 +580,16 @@ body.barcode-scanning-active {
   visibility: hidden;
   --background: transparent;
   --ion-background-color: transparent;
+}
+</style>
+
+<style scoped>
+#div-list {
+  background-color: rgb(250, 224, 184) !important;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: #f6a300;
 }
 </style>

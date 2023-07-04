@@ -11,8 +11,12 @@
             <ion-label style="text-align:center"> Alimenti vietati per {{ this.$store.getters.getActivePet.name }}
             </ion-label>
           </ion-item-divider>
-          <ion-item expand="block" style="text-transform: capitalize" v-for="food in forbiddenFilteredFoodList"
-            @click="setSelectedForbiddenFood(food)">{{ food.denominazione }}</ion-item>
+          <ion-item button detail="true" expand="block" style="text-transform: capitalize"
+            v-for="food in forbiddenFilteredFoodList" @click="setSelectedForbiddenFood(food)">
+            <ion-thumbnail slot="start">
+              <ion-img :src="food.img" />
+            </ion-thumbnail>
+            <ion-label>{{ food.denominazione }}</ion-label></ion-item>
         </ion-item-group>
       </ion-list>
       <!-- Display the modal with more information -->
@@ -89,6 +93,7 @@ import {
   IonImg,
   IonRow,
   IonIcon,
+  IonThumbnail,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { Api } from "../helpers/api";
@@ -152,6 +157,7 @@ export default defineComponent({
     IonLabel,
     IonImg,
     IonRow,
+    IonThumbnail,
   },
 });
 </script>
@@ -189,5 +195,16 @@ ion-item-divider {
   font-weight: bold;
   font-size: 16px;
   text-align: center;
+}
+
+ion-thumbnail {
+  --size: 40px;
+  --border-radius: 5px;
+}
+</style>
+
+<style scoped>
+ion-item {
+  --padding-start: 0px;
 }
 </style>
