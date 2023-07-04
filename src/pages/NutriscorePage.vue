@@ -439,7 +439,28 @@ export default {
           resolve(false);
         }
       });
-    }
+    },
+  },
+  ionViewDidEnter(){
+      useBackButton(9999, (processNextHandler)=>{ try{
+        if (this.isOpenModalCharacteristics){
+        this.isOpenModalCharacteristics = false
+      } else if (this.isOpenModalIngredients){
+        this.isOpenModalIngredients = false
+      } else if (this.isOpenModalOverall){
+        this.isOpenModalOverall = false
+      } else if (this.isRankingOpen){
+        this.newSearch()
+      } else if (this.isScannerOpen) {
+        this.$router.go(-1)
+      }
+
+      } catch(err){
+        alert(err)
+
+      }
+      
+    })
   },
   deactivated() {
     this.stopScan();

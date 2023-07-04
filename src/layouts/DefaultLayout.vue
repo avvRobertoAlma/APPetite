@@ -1,5 +1,5 @@
 <template>
-  <ion-page :key="$route.fullPath">
+  <ion-page :key="$route.fullPath" >
     <ion-header>
       <ion-toolbar :key="$route.fullPath">
         <ion-buttons slot="start">
@@ -35,12 +35,15 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
+  useBackButton
 } from "@ionic/vue";
 import { ref } from "vue";
 
 import {
   arrowBack,
 } from "ionicons/icons";
+
+
 
 const componentKey = ref(0);
 
@@ -76,6 +79,15 @@ export default {
       console.log("storedPet")
       return this.$store.getters.getActivePet
     }
+  },
+  mounted(){
+    useBackButton(10, (processNextHandler)=>{
+      if (this.showAlternativeButton){
+          this.callbackFunction()
+        } else {
+          processNextHandler()
+        }
+    })
   },
   watch: {
     petName() {

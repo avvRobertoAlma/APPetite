@@ -94,6 +94,7 @@ import {
   IonRow,
   IonIcon,
   IonThumbnail,
+  useBackButton
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { Api } from "../helpers/api";
@@ -106,6 +107,24 @@ export default defineComponent({
       isOpenModal: false,
       arrow: returnDownForwardOutline,
     };
+  },
+  ionViewDidEnter(){
+    useBackButton(9998, (processNextHandler) => {
+      try {
+        if (this.isOpenModal){
+        this.isOpenModal = false
+      } else if (!this.isOpenModal && this.$route.name == 'forbidden-foods') {
+        this.$router.go(-1)
+      } else {
+        processNextHandler()
+      }
+
+      } catch(err){
+        alert(err)
+      }
+      
+    })
+
   },
   computed: {
     forbiddenFoodList() {
