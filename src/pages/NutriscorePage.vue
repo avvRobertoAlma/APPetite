@@ -237,7 +237,12 @@ import {
   IonNote,
   IonChip,
   isPlatform,
-  useBackButton
+  useBackButton,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButtons,
+  IonButton,
 } from "@ionic/vue";
 
 import {
@@ -256,6 +261,7 @@ import { Api } from "../helpers/api";
 export default {
   components: {
     IonImg,
+    IonContent,
     IonGrid,
     IonRow,
     IonCol,
@@ -266,6 +272,11 @@ export default {
     IonNote,
     IonModal,
     IonChip,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonButton,
   },
   data() {
     return {
@@ -441,25 +452,26 @@ export default {
       });
     },
   },
-  ionViewDidEnter(){
-      useBackButton(9999, (processNextHandler)=>{ try{
-        if (this.isOpenModalCharacteristics){
-        this.isOpenModalCharacteristics = false
-      } else if (this.isOpenModalIngredients){
-        this.isOpenModalIngredients = false
-      } else if (this.isOpenModalOverall){
-        this.isOpenModalOverall = false
-      } else if (this.isRankingOpen){
-        this.newSearch()
-      } else if (this.isScannerOpen) {
-        this.$router.go(-1)
-      }
+  ionViewDidEnter() {
+    useBackButton(9999, (processNextHandler) => {
+      try {
+        if (this.isOpenModalCharacteristics) {
+          this.isOpenModalCharacteristics = false
+        } else if (this.isOpenModalIngredients) {
+          this.isOpenModalIngredients = false
+        } else if (this.isOpenModalOverall) {
+          this.isOpenModalOverall = false
+        } else if (this.isRankingOpen) {
+          this.newSearch()
+        } else if (this.isScannerOpen) {
+          this.$router.go(-1)
+        }
 
-      } catch(err){
+      } catch (err) {
         alert(err)
 
       }
-      
+
     })
   },
   deactivated() {

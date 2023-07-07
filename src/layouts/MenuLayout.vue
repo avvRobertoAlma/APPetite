@@ -36,13 +36,40 @@
             </ion-toolbar>
           </ion-header>
           <ion-content class="ion-padding">
-            <p>
-              L'app rappresenta un prototipo che non esaurisce le funzionalità pensate per lo sviluppo finale. Maggiori
-              informazioni sono contenute nello studio di fattibilità.
-            </p>
+            <ion-list lines="full">
+              <ion-list-header>
+                L'app rappresenta un prototipo che non esaurisce le funzionalità pensate per lo sviluppo finale. Maggiori
+                informazioni sono contenute nello studio di fattibilità.
+              </ion-list-header>
+              <ion-item>
+                <ion-label class="ion-text-wrap">
+                  <h3 style="font-weight: bold;">Scanner qualità</h3>
+                  <p>Scansiona il barcode ed ottieni un indice di qualità del prodotto, con ingredienti e
+                    valori nutrizionali.</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label class="ion-text-wrap">
+                  <h3 style="font-weight: bold;">Dosa il cibo</h3>
+                  <p>Scegli gli ingredienti per il tuo pet e combinali nelle dosi indicate per un piatto
+                    equilibrato.</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label class="ion-text-wrap">
+                  <h3 style="font-weight: bold;">Cibi vietati</h3>
+                  <p>Sonsulta l'elenco dei cibi che possono danneggiare il tuo pet.</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label class="ion-text-wrap">
+                  <h3 style="font-weight: bold;">I tuoi pets</h3>
+                  <p>Aggiungi, modifica e rimuovi i tuoi pet per l'uso nell'app.</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
           </ion-content>
         </ion-modal>
-
       </ion-content>
     </ion-menu>
     <div class="ion-page" id="main-content">
@@ -89,6 +116,7 @@ import {
   IonModal,
   IonLabel,
   IonInput,
+  IonListHeader,
 } from "@ionic/vue";
 import { scanCircleOutline } from "ionicons/icons"
 
@@ -115,6 +143,7 @@ export default {
     IonModal,
     IonLabel,
     IonInput,
+    IonListHeader,
   },
   data() {
     return {
@@ -186,5 +215,11 @@ ion-select::part(icon) {
 
 ion-select::part(text) {
   flex: 0 0 auto;
+}
+</style>
+
+<style scoped>
+ion-label::h2 {
+  font-weight: bold;
 }
 </style>
