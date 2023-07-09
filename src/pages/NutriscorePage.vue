@@ -3,19 +3,37 @@
     :showAlternativeButton="isRankingOpen">
     <div v-if="isScannerOpen">
       <ion-content class="ion-padding" style="position: absolute" v-if="developerMode">
-        <h3 style="margin-top: 10% !important; text-align: center !important">
-          Scansiona il codice a barre del prodotto per valutarlo
-        </h3>
-        <ion-img src="scanner.jpeg" @click="loadNutriscoreRanking()" />
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              Simulatore di scansione
+            </ion-card-title>
+            <ion-card-subtitle>
+              Clicca sul pulsante per una simulazione di scansione
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-img src="scanner.jpeg" @click="loadNutriscoreRanking()" />
+          </ion-card-content>
+        </ion-card>
       </ion-content>
       <ion-content class="ion-padding" style="position: absolute" v-else>
-        <h3 style="margin-top: 10% !important; text-align: center !important">
-          Scansiona il codice a barre del prodotto per valutarlo
-        </h3>
-        <ion-button style="margin-top: 80px !important" color="success" expand="full" @click="startScan"
-          v-if="!scanActive">
-          SCAN
-        </ion-button>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              Scanner di prodotti per animali
+            </ion-card-title>
+            <ion-card-subtitle>
+              Scansiona il codice a barre del prodotto per valutarlo
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button style="margin-top: 80px !important" color="success" expand="full" @click="startScan"
+              v-if="!scanActive">
+              SCAN
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
       </ion-content>
     </div>
     <div v-if="isRankingOpen && !loading">
@@ -243,6 +261,11 @@ import {
   IonTitle,
   IonButtons,
   IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
 } from "@ionic/vue";
 
 import {
@@ -277,6 +300,11 @@ export default {
     IonTitle,
     IonButtons,
     IonButton,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
   },
   data() {
     return {
@@ -624,5 +652,20 @@ body.barcode-scanning-active {
   border: 1px solid;
   border-radius: 5px;
   border-color: #f6a300;
+}
+</style>
+
+<style scoped>
+ion-card {
+  --background: #f4f5f8;
+  --color: black;
+}
+
+ion-card-title {
+  --color: #383a3e !important;
+}
+
+ion-card-subtitle {
+  --color: #9d9fa6 !important;
 }
 </style>
